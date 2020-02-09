@@ -1,0 +1,15 @@
+{
+    "id": "5675485137075254379",
+    "name": "operation-1573685892438-597424c9b5a21-31dc91dd-28d91ac5",
+    "zone": "https://www.googleapis.com/compute/v1/projects/test/zones/us-west1-b",
+    "operationType": "delete",
+    "targetLink": "https://www.googleapis.com/compute/v1/projects/test/zones/us-west1-b/instances/machine-75528818727119742869951076081511",
+    "targetId": "1627383962724807829",
+    "status": "RUNNING",
+    "user": "test",
+    "progress": 0,
+    "insertTime": "2019-11-13T14:58:12.884-08:00",
+    "startTime": "2019-11-13T14:58:12.928-08:00",
+    "selfLink": "https://www.googleapis.com/compute/v1/projects/test/zones/us-west1-b/operations/operation-1573685892438-597424c9b5a21-31dc91dd-28d91ac5",
+    "kind": "compute#operation"
+}

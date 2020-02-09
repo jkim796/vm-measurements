@@ -1,0 +1,77 @@
+{
+    "id": "1627383962724807829",
+    "creationTimestamp": "2019-11-13T14:58:03.053-08:00",
+    "name": "machine-75528818727119742869951076081511",
+    "tags": {
+        "fingerprint": "42WmSpB8rSM="
+    },
+    "machineType": "https://www.googleapis.com/compute/v1/projects/test/zones/us-west1-b/machineTypes/n1-standard-1",
+    "status": "RUNNING",
+    "zone": "https://www.googleapis.com/compute/v1/projects/test/zones/us-west1-b",
+    "networkInterfaces": [
+        {
+            "network": "https://www.googleapis.com/compute/v1/projects/test/global/networks/default",
+            "subnetwork": "https://www.googleapis.com/compute/v1/projects/test/regions/us-west1/subnetworks/default",
+            "networkIP": "10.138.0.16",
+            "name": "nic0",
+            "accessConfigs": [
+                {
+                    "type": "ONE_TO_ONE_NAT",
+                    "name": "External NAT",
+                    "natIP": "104.198.97.113",
+                    "networkTier": "PREMIUM",
+                    "kind": "compute#accessConfig"
+                }
+            ],
+            "fingerprint": "fI2aNZ_Eekw=",
+            "kind": "compute#networkInterface"
+        }
+    ],
+    "disks": [
+        {
+            "type": "PERSISTENT",
+            "mode": "READ_WRITE",
+            "source": "https://www.googleapis.com/compute/v1/projects/test/zones/us-west1-b/disks/machine-75528818727119742869951076081511",
+            "deviceName": "persistent-disk-0",
+            "index": 0,
+            "boot": true,
+            "autoDelete": true,
+            "licenses": [
+                "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/licenses/debian-9-stretch",
+                "https://www.googleapis.com/compute/v1/projects/vm-options/global/licenses/enable-vmx"
+            ],
+            "interface": "SCSI",
+            "guestOsFeatures": [
+                {
+                    "type": "VIRTIO_SCSI_MULTIQUEUE"
+                }
+            ],
+            "kind": "compute#attachedDisk"
+        }
+    ],
+    "metadata": {
+        "fingerprint": "95pL_A4_KpQ=",
+        "kind": "compute#metadata"
+    },
+    "serviceAccounts": [
+        {
+            "email": "422573850566-compute@developer.gserviceaccount.com",
+            "scopes": [
+                "https://www.googleapis.com/auth/devstorage.read_write",
+                "https://www.googleapis.com/auth/logging.write"
+            ]
+        }
+    ],
+    "selfLink": "https://www.googleapis.com/compute/v1/projects/test/zones/us-west1-b/instances/machine-75528818727119742869951076081511",
+    "scheduling": {
+        "onHostMaintenance": "TERMINATE",
+        "automaticRestart": false,
+        "preemptible": true
+    },
+    "cpuPlatform": "Intel Broadwell",
+    "labelFingerprint": "42WmSpB8rSM=",
+    "startRestricted": false,
+    "deletionProtection": false,
+    "kind": "compute#instance",
+    "user": "test"
+}
