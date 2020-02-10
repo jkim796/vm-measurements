@@ -1,0 +1,26 @@
+{
+  "mtu": 1460,
+  "default-runtime": "runc",
+  "runtimes": {
+    "runsc": {
+      "path": "/usr/local/bin/runsc",
+      "runtimeArgs": [
+        "--debug-log=/tmp/runsc-log/"
+      ]
+    },
+    "runsc-kvm": {
+      "path": "/usr/local/bin/runsc",
+      "runtimeArgs": [
+        "--platform=kvm",
+        "--debug-log=/tmp/runsc-log/"
+      ]
+    },
+    "runsc-ptrace": {
+      "path": "/usr/local/bin/runsc",
+      "runtimeArgs": [
+        "--platform=ptrace",
+        "--debug-log=/tmp/runsc-log/"
+      ]
+    }
+  }
+}

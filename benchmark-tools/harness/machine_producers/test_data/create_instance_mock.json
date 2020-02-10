@@ -1,0 +1,16 @@
+{
+    "id": "1983575942863336597",
+    "name": "operation-1573685881681-597424bf734be-f0e82ec4-c1a01ad3",
+    "zone": "https://www.googleapis.com/compute/v1/projects/test/zones/us-west1-b",
+    "operationType": "insert",
+    "targetLink": "https://www.googleapis.com/compute/v1/projects/test/zones/us-west1-b/instances/machine-75528818727119742869951076081511",
+    "targetId": "1627383962724807829",
+    "status": "DONE",
+    "user": "test",
+    "progress": 100,
+    "insertTime": "2019-11-13T14:58:03.178-08:00",
+    "startTime": "2019-11-13T14:58:03.180-08:00",
+    "endTime": "2019-11-13T14:58:10.384-08:00",
+    "selfLink": "https://www.googleapis.com/compute/v1/projects/test/zones/us-west1-b/operations/operation-1573685881681-597424bf734be-f0e82ec4-c1a01ad3",
+    "kind": "compute#operation"
+}
