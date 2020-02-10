@@ -1,9 +1,35 @@
-VM Install Documentation
+QEMU Documentation
 
-VirtualBox:
+qemu-system-x86_64 -nographic ubuntu-18.04-server-cloudimg-amd64.img
+
+Problem: Can't log in (we don't know the login credentials)
+
+
+VirtualBox Documentation
 
 On Ubuntu 18.04 bionic:
 
 sudo apt install virtualbox
 
 sudo apt install virtualbox-ext-pack
+
+Oracle resources on using virtual box from command line: https://www.oracle.com/technical-resources/articles/it-infrastructure/admin-manage-vbox-cli.html
+
+Release site: http://releases.ubuntu.com/18.04/
+
+Command:
+VBoxManage startvm ubuntu-bionic-18.04-cloudimg-20200129 --type headless
+
+VBoxManage guestcontrol ubuntu-bionic-18.04-cloudimg-20200129 run --exe /bin/ls
+
+Problem: We don't know the login credentials
+
+
+
+Kata Container Install Documentation
+
+Kata Install Link: https://github.com/kata-containers/documentation/wiki/Initial-release-of-Kata-Containers-with-Firecracker-support
+
+Need to save all docker containers first
+
+Install kernel modules (shown in the above link)
