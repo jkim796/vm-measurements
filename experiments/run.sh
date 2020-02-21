@@ -129,34 +129,34 @@ run_docker() {
 
     # 1. sysbench.cpu
     echo "python3 perf.py run --env examples/localhost.yaml sysbench.cpu"
-    python3 perf.py run --env ${DOCKER_SCRIPT_DIR}/examples/localhost.yaml sysbench.cpu
+    python3 ${DOCKER_SCRIPT_DIR}/perf.py run --env ${DOCKER_SCRIPT_DIR}/examples/localhost.yaml sysbench.cpu
 
     # 2. sysbench.memory
     echo "python3 perf.py run --env examples/localhost.yaml sysbench.memory"
-    python3 perf.py run --env ${DOCKER_SCRIPT_DIR}/examples/localhost.yaml sysbench.memory
+    python3 ${DOCKER_SCRIPT_DIR}/perf.py run --env ${DOCKER_SCRIPT_DIR}/examples/localhost.yaml sysbench.memory
 
     # 3. fio.randread
     echo "python3 perf.py run --env examples/localhost.yaml fio.randread"
-    python3 perf.py run --env ${DOCKER_SCRIPT_DIR}/examples/localhost.yaml fio.randread
+    python3 ${DOCKER_SCRIPT_DIR}/perf.py run --env ${DOCKER_SCRIPT_DIR}/examples/localhost.yaml fio.randread
 
     # 4. fio.radnwrite
     echo "python3 perf.py run --env examples/localhost.yaml fio.randwrite"
-    python3 perf.py run --env ${DOCKER_SCRIPT_DIR}/examples/localhost.yaml fio.randwrite
+    python3 ${DOCKER_SCRIPT_DIR}/perf.py run --env ${DOCKER_SCRIPT_DIR}/examples/localhost.yaml fio.randwrite
 
     # 5. syscall.syscall
     echo "python3 perf.py run --env examples/localhost.yaml syscall.syscall"
-    python3 perf.py run --env ${DOCKER_SCRIPT_DIR}/examples/localhost.yaml syscall.syscall
+    python3 ${DOCKER_SCRIPT_DIR}/perf.py run --env ${DOCKER_SCRIPT_DIR}/examples/localhost.yaml syscall.syscall
 
 
     ### Applications
 
     # 1. ml.tensorflow
     echo "python3 perf.py run --env examples/localhost.yaml ml.tensorflow"
-    python3 perf.py run --env ${DOCKER_SCRIPT_DIR}/examples/localhost.yaml ml.tensorflow
+    python3 ${DOCKER_SCRIPT_DIR}/perf.py run --env ${DOCKER_SCRIPT_DIR}/examples/localhost.yaml ml.tensorflow
 
     # 2. media.ffmpeg
     echo "python3 perf.py run --env examples/localhost.yaml media.ffmpeg"
-    python3 perf.py run --env ${DOCKER_SCRIPT_DIR}/examples/localhost.yaml media.ffmpeg
+    python3 ${DOCKER_SCRIPT_DIR}/perf.py run --env ${DOCKER_SCRIPT_DIR}/examples/localhost.yaml media.ffmpeg
 }
 
 clean() {
@@ -191,7 +191,7 @@ do
 	    ;;
 	-h|--help)
 	    display_usage
-	    shift
+	    exit
 	    ;;
 	clean)
 	    clean
