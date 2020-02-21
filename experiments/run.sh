@@ -36,7 +36,7 @@ run_native() {
 
     echo "fio --output-format=json --name=test --ramp_time=${ramp_time} --ioengine=${ioengine} --size=${size} \
 	--filename=${path} --iodepth=${iodepth} --bs=${blocksize} --rw=${workload} ${time}"
-    fio --name=test --ramp_time=${ramp_time} --ioengine=${ioengine} --size=${size} \
+    fio --output-format=json --name=test --ramp_time=${ramp_time} --ioengine=${ioengine} --size=${size} \
 	--filename=${path} --iodepth=${iodepth} --bs=${blocksize} --rw=${workload} ${time}
 
     # 4. fio.radnwrite
@@ -44,7 +44,7 @@ run_native() {
     echo "fio --output-format=json --name=test --ramp_time=${ramp_time} --ioengine=${ioengine} --size=${size} \
 	--filename=${path} --iodepth=${iodepth} --bs=${blocksize} --rw=${read} ${time}"
     fio --output-format=json --name=test --ramp_time=${ramp_time} --ioengine=${ioengine} --size=${size} \
-	--filename=${path} --iodepth=${iodepth} --bs=${blocksize} --rw=${read} ${time}
+	--filename=${path} --iodepth=${iodepth} --bs=${blocksize} --rw=${workload} ${time}
 
     # 5. syscall.syscall
     if [[ ! -f syscall.c ]]; then
