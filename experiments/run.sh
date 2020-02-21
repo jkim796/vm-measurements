@@ -48,7 +48,7 @@ run_native() {
 
     # 5. syscall.syscall
     if [[ ! -f syscall.c ]]; then
-	cp ./benchmark-tools/workloads/syscall/syscall.c .
+	cp ${DOCKER_SCRIPT_DIR}/workloads/syscall/syscall.c .
 	gcc -O2 -o syscall syscall.c
     fi
     count=1000000
@@ -188,6 +188,10 @@ do
 	    PLATFORM="$2"
 	    shift  # past argument
 	    shift  # past value
+	    ;;
+	-h|--help)
+	    display_usage
+	    shift
 	    ;;
 	clean)
 	    clean
