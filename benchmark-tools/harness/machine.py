@@ -115,6 +115,9 @@ class LocalMachine(Machine):
 
     def pull(self, workload: str) -> str:
         # Run the docker build command locally.
+        print(f"[DEBUG] workload: {workload}")
+        crap = LOCAL_WORKLOADS_PATH.format(workload)
+        print(f'[DEBUG] docker build --tag={workload} {crap}')
         logging.info("Building %s@%s locally...", workload, self._name)
         self.run("docker build --tag={} {}".format(
             workload, LOCAL_WORKLOADS_PATH.format(workload)))
