@@ -195,7 +195,7 @@ do
 	    ;;
 	clean)
 	    clean
-	    shift
+	    exit
 	    ;;
 	*)
 	    shift  # past argument
