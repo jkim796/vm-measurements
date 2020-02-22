@@ -1,0 +1,1147 @@
+% --- 2019 --- %
+
+@misc{optane-pmm,
+  title = {{Intel® Optane™ DC persistent memory}},
+  author = {{Intel}},
+  year = {2019},
+  note = {\url{https://www.intel.com/content/www/us/en/architecture-and-technology/optane-dc-persistent-memory.html}}
+}
+
+@misc{izraelevitz2019basic,
+  title={{Basic Performance Measurements of the Intel Optane DC Persistent Memory Module}},
+  author={Joseph Izraelevitz and Jian Yang and Lu Zhang and Juno Kim and Xiao Liu and Amirsaman Memaripour and Yun Joon Soh and Zixuan Wang and Yi Xu and Subramanya R. Dulloor and Jishen Zhao and Steven Swanson},
+  year={2019},
+  note = {\url{https://arxiv.org/abs/1903.05714}}
+}
+
+% --- 2018 --- %
+
+@misc{pmemcheck,
+  title = {{Discover Persistent Memory Programming Errors with Pmemcheck}},
+  author = {{Intel}},
+  year = {2018},
+  note = {\url{https://software.intel.com/en-us/articles/discover-\\persistent-memory-programming-errors-with-\\pmemcheck}}
+}
+
+@inproceedings{romulus,
+  title = {{Romulus: Efficient Algorithms for Persistent Transactional Memory}},
+  author = {Correia, Andreia and Felber, Pascal and Ramalhete, Pedro},
+  booktitle = {Proceedings of the 30th on Symposium on Parallelism in Algorithms and Architectures},
+  series = {SPAA'18},
+  year = {2018},
+  pages = {271--282},
+  publisher = {ACM}
+}
+
+@misc{isa-l,
+  title = {{Intelligent Storage Acceleration Library}},
+  author = {{Intel}},
+  year = {2018},
+  note = {\url{https://software.intel.com/en-us/storage/isa-l}}
+}
+
+@misc{lkml-mce,
+  title = {{use memcpy\_mcsafe() for copy\_to\_iter()}},
+  author = {{Dan Williams}},
+  year = {2018},
+  note = {\url{https://lkml.org/lkml/2018/5/1/708}}
+}
+% Writes don't trigger MCE. Only consumed poison / media errors trigger MCE.
+% I.e. even a read-modify-write operation to write-back a partially dirty
+% cacheline will not trigger an MCE because the read is not consumed by the core
+% only the cache. We'll get notified when that happens, but only by CMCI
+% interrupt not an MCE exception.
+
+@misc{hdfs-ec,
+  title = {{HDFS Erasure Coding}},
+  author = {{Apache Software Foundation}},
+  year = {2018},
+  note = {\url{https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HDFSErasureCoding.html}}
+}
+
+@inproceedings{hwundoredo,
+  title = {{Steal but No Force: Efficient Hardware Undo+Redo Logging for Persistent Memory Systems}},
+  author = {Ogleari, Matheus Almeida and Miller, Ethan L and Zhao, Jishen},
+  booktitle = {High Performance Computer Architecture (HPCA), 2018 IEEE International Symposium on},
+  series = {HPCA'18},
+  pages = {336--349},
+  year = {2018},
+  publisher = {IEEE}
+}
+
+@misc{linux-dax,
+  title = {{Direct Access for files}},
+  author = {{Linux Kernel Organization}},
+  year = {2018},
+  note = {\url{https://www.kernel.org/doc/Documentation/filesystems/dax.txt}}
+}
+
+@misc{linux-nvdimm,
+  title = {{LIBNVDIMM: Non-Volatile Devices}},
+  author = {{Linux Kernel Organization}},
+  year = {2018},
+  note = {\url{https://www.kernel.org/doc/Documentation/nvdimm/nvdimm.txt}}
+}
+
+@misc{ndctl,
+  title = {{Utility Library for Managing the libnvdimm Sub-system in the Linux Kernel}},
+  author = {pmem.io},
+  year = {2018},
+  note = {\url{https://github.com/pmem/ndctl}}
+}
+
+@inproceedings{localrep,
+  author = {{Mikhail Zarubin and Thomas Kissinger and Dirk Habich and Wolfgang Lehner}},
+  title = {{Efficient Compute Node-local Replication Mechanisms for NVRAM-centric Data Structures}},
+  booktitle = {Proceedings of the 14th International Workshop on Data Management on New Hardware, Houston, TX, USA, June 11, 2018},
+  pages = {7:1--7:9},
+  year = {2018}
+}
+
+@article{simpo,
+  author = {Zhang, Mingzhe and Lam, King Tin and Yao, Xin and Wang, Cho-Li},
+  title = {{SIMPO: A Scalable In-Memory Persistent Object Framework Using NVRAM for Reliable Big Data Computing}},
+  journal = {ACM Transactions on Architecture and Code Optimization},
+  issue_date = {March 2018},
+  volume = {15},
+  number = {1},
+  month = mar,
+  year = {2018},
+  pages = {7:1--7:28},
+  articleno = {7},
+  publisher = {ACM}
+}
+
+% --- 2017 --- %
+
+@misc{libnvdimm413,
+  author = {{Dan Williams}},
+  title = {{libnvdimm for 4.13}},
+  year = {2017},
+  note={\url{https://lkml.org/lkml/2017/7/6/843}}
+}
+
+@misc{libnvdimm412,
+  author = {{Dan Williams}},
+  title = {{libnvdimm for 4.12}},
+  year = {2017},
+  note={\url{https://lkml.org/lkml/2017/5/5/620}}
+}
+
+@misc{acpi62,
+  author = {{UEFI Forum}},
+  title = {Advanced Configuration and Power Interface Specification},
+  note = {http://www.uefi.org/sites/default/files/resources/\\ACPI\_6\_2.pdf},
+  year = {2017},
+  key = {acpi}
+}
+
+@misc{pagepoison,
+  author = {Luck, Tony},
+  title = {{Patchwork mm/hwpoison: Clear PRESENT Bit for Kernel 1:1 Mappings of Poison Pages}},
+  year = {2017},
+  note={\url{https://patchwork.kernel.org/patch/9793701}}
+}
+
+@misc{3dxpoint,
+  author = {Micron},
+  title = {{3D XPoint Technology}},
+  year = {2017},
+  note={\url{http://www.micron.com/products/advanced-solutions/3d-xpoint-technology}}
+}
+
+@inproceedings{hotpot,
+  title = {{Distributed Shared Persistent Memory}},
+  author = {Shan, Yizhou and Tsai, Shin-Yeh and Zhang, Yiying},
+  booktitle = {Proceedings of the 2017 Symposium on Cloud Computing},
+  series = {SoCC'17},
+  year = {2017},
+  pages = {323--337},
+  publisher = {ACM}
+}
+
+@inproceedings{dudetm,
+  title = {{DudeTM: Building Durable Transactions with Decoupling for Persistent Memory}},
+  author = {Liu, Mengxing and Zhang, Mingxing and Chen, Kang and Qian, Xuehai and Wu, Yongwei and Zheng, Weimin and Ren, Jinglei},
+  booktitle = {Proceedings of the Twenty-Second International Conference on Architectural Support for Programming Languages and Operating Systems},
+  series = {ASPLOS'17},
+  pages = {329--343},
+  year = {2017},
+  publisher = {ACM}
+}
+
+@misc{futureofdax,
+  title = {{The future of DAX}},
+  author = {LWN},
+  year = {2017},
+  note = {\url{https://lwn.net/Articles/717953}}
+}
+
+@inproceedings{imply,
+  title = {{Redundancy Does Not Imply Fault Tolerance: Analysis of Distributed Storage Reactions to Single Errors and Corruptions}},
+  author = {Ganesan, Aishwarya and Alagappan, Ramnatthan and Arpaci-Dusseau, Andrea C. and Arpaci-Dusseau, Remzi H.},
+  booktitle = {Proceedings of the 15th Usenix Conference on File and Storage Technologies},
+  series = {FAST'17},
+  year = {2017},
+  pages = {149--165},
+  publisher = {{USENIX} Association}
+}
+
+@misc{intel2017faq,
+  title = {{Persistent Memory Programming - Frequently Asked Questions}},
+  author = {Intel},
+  year = {2017},
+  note = {\url{https://software.intel.com/en-us/articles/persistent-memory-programming-\\frequently-asked-questions}}
+}
+
+@misc{intel2017intro,
+  title = {{Introduction to Programming with Persistent Memory from Intel}},
+  author = {Intel},
+  year = {2017},
+  note = {\url{https://software.intel.com/en-us/articles/introduction-to-programming-with-persistent\\-memory-from-intel}}
+}
+
+@misc{intel2017isa,
+  title = {{Intel Architecture Instruction Set Extensions Programming Reference}},
+  author = {Intel},
+  year = {2017},
+  note = {\url{https://software.intel.com/en-us/isa-extensions}}
+}
+
+@inproceedings{kaminotx,
+  title = {{Atomic In-place Updates for Non-volatile Main Memories with Kamino-Tx}},
+  author = {Memaripour, Amirsaman and Badam, Anirudh and Phanishayee, Amar and Zhou, Yanqi and Alagappan, Ramnatthan and Strauss, Karin and Swanson, Steven},
+  booktitle = {Proceedings of the Twelfth European Conference on Computer Systems},
+  series = {EuroSys'17},
+  pages = {499--512},
+  year = {2017},
+  publisher = {ACM}
+}
+
+@inproceedings{kolli2017language,
+  title = {{Language-level Persistency}},
+  author = {Kolli, Aasheesh and Gogte, Vaibhav and Saidi, Ali and Diestelhorst, Stephan and Chen, Peter M. and Narayanasamy, Satish and Wenisch, Thomas F.},
+  booktitle = {Proceedings of the 44th Annual International Symposium on Computer Architecture},
+  series = {ISCA'17},
+  year = {2017},
+  pages = {481--493},
+  publisher = {ACM}
+}
+
+@inproceedings{lognvmm,
+  title = {{Log-Structured Non-Volatile Main Memory}},
+  author = {Qingda Hu and Jinglei Ren and Anirudh Badam and Jiwu Shu and Thomas Moscibroda},
+  booktitle = {Proceedings of the {USENIX} Annual Technical Conference},
+  series = {ATC'17},
+  year = {2017},
+  pages = {703--717},
+  publisher = {{USENIX} Association}
+}
+
+@inproceedings{memec,
+  title = {{Erasure Coding for Small Objects in In-memory KV Storage}},
+  author = {Yiu, Matt M. T. and Chan, Helen H. W. and Lee, Patrick P. C.},
+  booktitle = {Proceedings of the 10th ACM International Systems and Storage Conference},
+  series = {SYSTOR'17},
+  year = {2017},
+  pages = {14:1--14:12},
+  publisher = {ACM}
+}
+
+@misc{micron-nvdimm,
+  title = {{Hybrid Memory: Bridging the Gap Between DRAM Speed and NAND Nonvolatility}},
+  author={Micron},
+  year={2017},
+  note={\url{http://www.micron.com/products/dram-modules/nvdimm}},
+}
+
+@article{mpxstudy,
+  title = {{Intel {MPX} Explained: An Empirical Study of Intel {MPX} and Software-based Bounds Checking Approaches}},
+  author = {Oleksii Oleksenko and Dmitrii Kuvaiskii and Pramod Bhatotia and Pascal Felber and Christof Fetzer},
+  journal = {arXiv},
+  year = {2017}
+}
+
+@inproceedings{novafortis,
+  title = {{NOVA-Fortis: A Fault-Tolerant Non-Volatile Main Memory File System}},
+  author = {Xu, Jian and Zhang, Lu and Memaripour, Amirsaman and Gangadharaiah, Akshatha and Borase, Amit and Da Silva, Tamires Brito and Swanson, Steven and Rudoff, Andy},
+  booktitle = {Proceedings of the 26th Symposium on Operating Systems Principles},
+  series = {SOSP'17},
+  year = {2017},
+  pages = {478--496},
+  publisher = {ACM},
+}
+
+@inproceedings{octopus,
+  title = {{Octopus: an RDMA-enabled Distributed Persistent Memory File System}},
+  author = {Youyou Lu and Jiwu Shu and Youmin Chen and Tao Li},
+  booktitle = {Proceedings of the {USENIX} Annual Technical Conference},
+  series = {ATC'17},
+  year = {2017},
+  pages = {773--785},
+  publisher = {{USENIX} Association}
+}
+
+@misc{optane-memory,
+  title = {{Optane Memory}},
+  author = {Intel},
+  year = {2017},
+  note = {\url{https://www.intel.com/content/www/us/en/architecture-and-technology/optane-memory.html}}
+}
+
+@article{pallocator,
+  title = {{Memory management techniques for large-scale persistent-main-memory systems}},
+  author = {Oukid, Ismail and Booss, Daniel and Lespinasse, Adrien and Lehner, Wolfgang and Willhalm, Thomas and Gomes, Gr{\'e}goire},
+  journal = {Proceedings of the VLDB Endowment},
+  volume = {10},
+  number = {11},
+  pages = {1166--1177},
+  year = {2017},
+  publisher = {VLDB Endowment}
+}
+
+@misc{pmdk,
+  title = {{Persistent Memory Development Kit}},
+  author = {pmem.io},
+  year = {2017},
+  note = {\url{http://pmem.io/pmdk}}
+}
+
+@misc{pynvm,
+  title = {{pynvm: Non-volatile memory for Python}},
+  author = {Perone, Christian and Murray, David},
+  year = {2017},
+  note = {\url{https://github.com/pmem/pynvm}}
+}
+
+@article{rudoff2017persistent,
+  title = {{Persistent Memory Programming}},
+  author = {Rudoff, Andy},
+  journal = {;login:},
+  volume = {42},
+  number = {2},
+  year = {2017},
+  publisher = {{USENIX} Association}
+}
+
+@inproceedings{slottedpaging,
+  title = {{Failure-Atomic Slotted Paging for Persistent Memory}},
+  author = {Seo, Jihye and Kim, Wook-Hee and Baek, Woongki and Nam, Beomseok and Noh, Sam H},
+  booktitle = {Proceedings of the Twenty-Second International Conference on Architectural Support for Programming Languages and Operating Systems},
+  series = {ASPLOS'17},
+  pages = {91--104},
+  year = {2017},
+  publisher = {ACM}
+}
+
+@misc{snia2017npm,
+  title = {{NVM Programming Model v1.2}},
+  author = {SNIA},
+  year = {2017},
+  note = {\url{https://www.snia.org/tech_activities/standards/curr_standards/npm}}
+}
+
+@inproceedings{waflmetaprot,
+  title = {{High Performance Metadata Integrity Protection in the WAFL Copy-on-Write File System}},
+  author = {Harendra Kumar and Yuvraj Patel and Ram Kesavan and Sumith Makam},
+  booktitle = {15th {USENIX} Conference on File and Storage Technologies},
+  series = {FAST'17},
+  pages = {197--212},
+  year = {2017},
+  publisher = {{USENIX} Association}
+}
+
+@inproceedings{whisper,
+  title = {{An Analysis of Persistent Memory Use with WHISPER}},
+  author = {Nalli, Sanketh and Haria, Swapnil and Hill, Mark D and Swift, Michael M and Volos, Haris and Keeton, Kimberly},
+  booktitle = {Proceedings of the Twenty-Second International Conference on Architectural Support for Programming Languages and Operating Systems},
+  series = {ASPLOS'17},
+  pages = {135--148},
+  year = {2017},
+  publisher = {ACM}
+}
+
+@misc{x86pm,
+  title = {{Intel 64 and IA-32 Architectures Software Developer's Manuals}},
+  author = {Intel},
+  year = {2017},
+  note = {\url{https://software.intel.com/en-us/articles/intel-sdm}}
+}
+
+% --- 2016 --- %
+
+@inproceedings{ccmodels,
+  title = {{Specifying and Checking File System Crash-Consistency Models}},
+  author = {Bornholt, James and Kaufmann, Antoine and Li, Jialin and Krishnamurthy, Arvind and Torlak, Emina and Wang, Xi},
+  booktitle = {Proceedings of the Twenty-First International Conference on Architectural Support for Programming Languages and Operating Systems},
+  series = {ASPLOS'16},
+  pages = {83--98},
+  year = {2016},
+  publisher = {ACM}
+}
+
+@inproceedings{cocytus,
+  title = {{Efficient and Available In-memory KV-Store with Hybrid Erasure Coding and Replication}},
+  author = {Heng Zhang and Mingkai Dong and Haibo Chen},
+  booktitle = {14th {USENIX} Conference on File and Storage Technologies ({FAST} 16)},
+  year = {2016},
+  isbn = {978-1-931971-28-7},
+  address = {Santa Clara, CA},
+  pages = {167--180},
+  url = {https://www.usenix.org/conference/fast16/technical-sessions/presentation/zhang-heng},
+  publisher = {{USENIX} Association},
+}
+
+@inproceedings{dct,
+  title = {{High-Performance Transactions for Persistent Memories}},
+  author = {Kolli, Aasheesh and Pelley, Steven and Saidi, Ali and Chen, Peter M. and Wenisch, Thomas F.},
+  booktitle = {Proceedings of the Twenty-First International Conference on Architectural Support for Programming Languages and Operating Systems},
+  series = {ASPLOS'16},
+  year = {2016},
+  pages = {399--411},
+  publisher = {ACM}
+}
+
+@misc{device-dax,
+  title = {{"Device DAX"} for persistent memory}},
+  author = {Dan Williams},
+  year = {2016},
+  note = {\url{https://lists.gt.net/linux/kernel/2434768}}
+}
+
+@misc{emu-pmem,
+  title = {How to emulate Persistent Memory},
+  author = {pmem.io},
+  year = {2016},
+  note = {\url{https://pmem.io/2016/02/22/pm-emulation.html}}
+}
+
+@inproceedings{flash-reliability,
+  title = {{Flash Reliability in Production: The Expected and the Unexpected}},
+  author = {Bianca Schroeder and Raghav Lagisetty and Arif Merchant},
+  booktitle = {Proceedings of the 14th {USENIX} Conference on File and Storage Technologies},
+  series = {FAST'16},
+  year = {2016},
+  pages = {67--80},
+  publisher = {{USENIX} Association}
+}
+
+@inproceedings{justdo,
+  title = {{Failure-Atomic Persistent Memory Updates via JUSTDO Logging}},
+  author = {Izraelevitz, Joseph and Kelly, Terence and Kolli, Aasheesh},
+  booktitle = {Proceedings of the Twenty-First International Conference on Architectural Support for Programming Languages and Operating Systems},
+  series = {ASPLOS'16},
+  year = {2016},
+  pages = {427--442},
+  publisher = {ACM}
+}
+
+@inproceedings{kim2016nvwal,
+  title = {{NVWAL: Exploiting NVRAM in Write-Ahead Logging}},
+  author = {Kim, Wook-Hee and Kim, Jinwoong and Baek, Woongki and Nam, Beomseok and Won, Youjip},
+  booktitle = {Proceedings of the Twenty-First International Conference on Architectural Support for Programming Languages and Operating Systems},
+  series = {ASPLOS'16},
+  year = {2016},
+  pages = {385--398},
+  publisher = {ACM}
+}
+
+@inproceedings{kolli2016delegated,
+  title = {{Delegated Persist Ordering}},
+  author = {Kolli, Aasheesh and Rosen, Jeff and Diestelhorst, Stephan and Saidi, Ali and Pelley, Steven and Liu, Sihang and Chen, Peter M and Wenisch, Thomas F},
+  booktitle = {2016 49th Annual IEEE/ACM International Symposium on Microarchitecture (MICRO)},
+  year = {2016},
+  pages = {1-13},
+  publisher = {IEEE}
+}
+
+@inproceedings{lowfat,
+  title = {{Heap Bounds Protection with Low Fat Pointers}},
+  author = {Duck, Gregory J. and Yap, Roland H. C.},
+  booktitle = {Proceedings of the 25th International Conference on Compiler Construction},
+  series = {CC'16},
+  year = {2016},
+  pages = {132--142},
+  publisher = {ACM}
+}
+
+@inproceedings{makalu,
+  title = {{Makalu: Fast Recoverable Allocation of Non-volatile Memory}},
+  author = {Bhandari, Kumud and Chakrabarti, Dhruva R. and Boehm, Hans-J.},
+  booktitle = {Proceedings of the 2016 ACM SIGPLAN International Conference on Object-Oriented Programming, Systems, Languages, and Applications},
+  series = {OOPSLA'16},
+  pages = {677--694},
+  year = {2016},
+  publisher = {ACM}
+}
+
+@misc{mcsafe,
+  title = {{[PATCH v14] x86, mce: Add memcpy\_mcsafe()}},
+  author = {kernel.org},
+  year = {2016},
+  note = {\url{https://patchwork.kernel.org/patch/8427231}}
+}
+
+@misc{mpx,
+  author = {Intel},
+  title = {{Intel Memory Protection Extensions (Intel MPX)}},
+  year = {2016},
+  note={\url{https://software.intel.com/en-us/isa-extensions/intel-mpx}}
+}
+
+@inproceedings{nova,
+  title = {{NOVA: A Log-structured File System for Hybrid Volatile/Non-volatile Main Memories.}},
+  author = {Xu, Jian and Swanson, Steven},
+  booktitle = {Proceedings of the 14th {USENIX} Conference on File and Storage Technologies},
+  series = {FAST'16},
+  pages = {323--338},
+  year = {2016},
+  publisher = {{USENIX} Association}
+}
+
+@inproceedings{nvlc,
+  title = {{NVL-C: Static Analysis Techniques for Efficient, Correct Programming of Non-Volatile Main Memory Systems}},
+  author = {Denny, Joel E. and Lee, Seyong and Vetter, Jeffrey S.},
+  booktitle = {Proceedings of the 25th ACM International Symposium on High-Performance Parallel and Distributed Computing},
+  series = {HPDC'16},
+  year = {2016},
+  pages = {125--136},
+  publisher = {ACM}
+}
+
+@misc{nvmdirect,
+  title = {{NVM Direct}},
+  author = {Oracle},
+  year = {2016},
+  note = {\url{http://www.oracle.com/technetwork/oracle-labs/open-nvm-download-2440119.html}}
+}
+
+@misc{pcommit,
+  title = {{Deprecating the PCOMMIT instruction}},
+  author = {Andy Rudoff},
+  year = {2016},
+  note = {\url{https://software.intel.com/en-us/blogs/2016/09/12/deprecate-pcommit-instruction}}
+}
+
+@inproceedings{redoundo,
+  title = {{Empirical Study of Redo and Undo Logging in Persistent Memory}},
+  author = {Wan, Hu and Lu, Youyou and Xu, Yuanchao and Shu, Jiwu},
+  booktitle = {Non-Volatile Memory Systems and Applications Symposium (NVMSA), 2016 5th},
+  series = {NVMSA'16},
+  pages = {1--6},
+  year = {2016},
+  publisher = {IEEE}
+}
+
+@inproceedings{ssd-failures,
+  title = {{SSD Failures in Datacenters: What? When? And Why?}},
+  author = {Narayanan, Iyswarya and Wang, Di and Jeon, Myeongjae and Sharma, Bikash and Caulfield, Laura and Sivasubramaniam, Anand and Cutler, Ben and Liu, Jie and Khessib, Badriddine and Vaid, Kushagra},
+  booktitle = {Proceedings of the 9th ACM International on Systems and Storage Conference},
+  series = {SYSTOR'16},
+  year = {2016},
+  pages = {7:1--7:11},
+  publisher = {ACM}
+}
+
+% --- 2015 --- %
+
+@inproceedings{arulraj2015lets,
+  title = {{Let's Talk About Storage \& Recovery Methods for Non-Volatile Memory Database Systems}},
+  author = {Arulraj, Joy and Pavlo, Andrew and Dulloor, Subramanya R.},
+  booktitle = {Proceedings of the 2015 ACM SIGMOD International Conference on Management of Data},
+  series = {SIGMOD'15},
+  year = {2015},
+  pages = {707--722},
+  publisher = {ACM}
+}
+
+@misc{bridge2015nvm,
+  title = {{NVM Support for C Applications}},
+  author = {Bill Bridge},
+  year = {2015},
+  note = {\url{http://www.snia.org/sites/default/files/BillBridgeNVMSummit2015Slides.pdf}}
+}
+
+@inproceedings{chisnall2015beyond,
+  title = {{Beyond the PDP-11: Architectural Support for a Memory-Safe C Abstract Machine}},
+  author = {Chisnall, David and Rothwell, Colin and Watson, Robert N.M. and Woodruff, Jonathan and Vadera, Munraj and Moore, Simon W. and Roe, Michael and Davis, Brooks and Neumann, Peter G.},
+  booktitle = {Proceedings of the Twentieth International Conference on Architectural Support for Programming Languages and Operating Systems},
+  series = {ASPLOS'15},
+  year = {2015},
+  pages = {117--130},
+  publisher = {ACM},
+}
+
+@inproceedings{dram-errors-modern,
+  title = {{Memory Errors in Modern Systems: The Good, The Bad, and The Ugly}},
+  author = {Sridharan, Vilas and DeBardeleben, Nathan and Blanchard, Sean and Ferreira, Kurt B. and Stearley, Jon and Shalf, John and Gurumurthi, Sudhanva},
+  booktitle = {Proceedings of the Twentieth International Conference on Architectural Support for Programming Languages and Operating Systems},
+  series = {ASPLOS'15},
+  year = {2015},
+  pages = {297--310},
+  publisher = {ACM}
+}
+
+@inproceedings{flash-failures,
+  title = {{A Large-Scale Study of Flash Memory Failures in the Field}},
+  author = {Meza, Justin and Wu, Qiang and Kumar, Sanjev and Mutlu, Onur},
+  booktitle = {Proceedings of the 2015 ACM SIGMETRICS International Conference on Measurement and Modeling of Computer Systems},
+  series = {SIGMETRICS'15},
+  year = {2015},
+  pages = {177--190},
+  publisher = {ACM}
+}
+
+@inproceedings{hacfs,
+  title = {{A Tale of Two Erasure Codes in HDFS}},
+  author = {Xia, Mingyuan and Saxena, Mohit and Blaum, Mario and Pease, David A.},
+  booktitle = {Proceedings of the 13th {USENIX} Conference on File and Storage Technologies},
+  series = {FAST'15},
+  year = {2015},
+  pages = {213--226},
+  publisher = {{USENIX} Association}
+}
+
+@inproceedings{mojim,
+  title = {{Mojim: A Reliable and Highly-Available Non-Volatile Memory System}},
+  author = {Zhang, Yiying and Yang, Jian and Memaripour, Amirsaman and Swanson, Steven},
+  booktitle = {Proceedings of the Twentieth International Conference on Architectural Support for Programming Languages and Operating Systems},
+  series = {ASPLOS'15},
+  year = {2015},
+  pages = {3--18},
+  publisher = {ACM}
+}
+
+@inproceedings{nagarakatte2015everything,
+  title = {{Everything You Want to Know About Pointer-Based Checking}},
+  author = {Santosh Nagarakatte and Milo M. K. Martin and Steve Zdancewic},
+  booktitle = {1st Summit on Advances in Programming Languages (SNAPL 2015)},
+  pages = {190--208},
+  series = {Leibniz International Proceedings in Informatics (LIPIcs)},
+  year = {2015},
+  publisher = {Schloss Dagstuhl--Leibniz-Zentrum fuer Informatik}
+}
+
+@inproceedings{nvm-malloc,
+  title = {{nvm\_malloc: Memory Allocation for NVRAM}},
+  author = {David Schwalb and Tim Berning and Martin Faust and Markus Dreseler and Hasso Plattner},
+  booktitle = {International Workshop on Accelerating Data Management Systems Using Modern Processor and Storage Architectures},
+  series = {ADMS'15},
+  pages = {61--72},
+  year = {2015}
+}
+
+@techreport{nvmdb,
+  author = {Kosuke Suzuki and Steven Swanson},
+  title = {{The Non-Volatile Memory Technology Database (NVMDB)}},
+  number = {CS2015-1011},
+  institution = {Department of Computer Science \& Engineering, University of California, San Diego},
+  year = {2015},
+  note = {\url{http://nvmdb.ucsd.edu}}
+}
+
+@inproceedings{nvtree,
+  title = {{NV-Tree: Reducing Consistency Cost for NVM-based Single Level Systems}},
+  author = {Yang, Jun and Wei, Qingsong and Chen, Cheng and Wang, Chundong and Yong, Khai Leong and He, Bingsheng},
+  booktitle = {Proceedings of the 13th {USENIX} Conference on File and Storage Technologies},
+  series = {FAST'15},
+  pages = {167--181},
+  year = {2015},
+  publisher = {{USENIX} Association}
+}
+
+@article{rewind,
+  title = {{REWIND: Recovery Write-ahead System for In-Memory Non-volatile Data-Structures}},
+  author = {Chatzistergiou, Andreas and Cintra, Marcelo and Viglas, Stratis D},
+  journal = {Proceedings of the VLDB Endowment},
+  volume = {8},
+  pages = {497--508},
+  year = {2015},
+  publisher = {VLDB Endowment}
+}
+
+@inproceedings{softwrap,
+  title = {{SoftWrAP: A Lightweight Framework for Transactional Support of Storage Class Memory}},
+  author = {Giles, Ellis R and Doshi, Kshitij and Varman, Peter},
+  booktitle = {Mass Storage Systems and Technologies (MSST), 2015 31st Symposium on},
+  series = {MSST'16},
+  pages = {1--14},
+  year = {2015},
+  publisher = {IEEE}
+}
+
+@inproceedings{thynvm,
+  title = {{ThyNVM: Enabling software-transparent crash consistency in persistent memory systems}},
+  author = {Ren, Jinglei and Zhao, Jishen and Khan, Samira and Choi, Jongmoo and Wu, Yongwei and Mutiu, Onur},
+  booktitle = {Proceedings of the 48th International Symposium on Microarchitecture},
+  series = {MICRO'15},
+  pages = {672--685},
+  year = {2015},
+  publisher = {IEEE}
+}
+
+@misc{xfsdax,
+  title = {{xfs: DAX support}},
+  author = {LWN},
+  year = {2015},
+  note = {\url{https://lwn.net/Articles/635514}}
+}
+
+% --- 2014 --- %
+
+@inproceedings{atlas,
+  title = {{Atlas: Leveraging Locks for Non-volatile Memory Consistency}},
+  author = {Chakrabarti, Dhruva R. and Boehm, Hans-J. and Bhandari, Kumud},
+  booktitle = {Proceedings of the 2014 ACM International Conference on Object Oriented Programming Systems Languages \& Applications},
+  series = {OOPSLA'14},
+  year = {2014},
+  pages = {433--452},
+  publisher = {ACM}
+}
+
+@inproceedings{cuckoo,
+  title = {{Algorithmic Improvements for Fast Concurrent Cuckoo Hashing}},
+  author = {Li, Xiaozhou and Andersen, David G. and Kaminsky, Michael and Freedman, Michael J.},
+  booktitle = {Proceedings of the Ninth European Conference on Computer Systems},
+  series = {EuroSys'14},
+  year = {2014},
+  pages = {27:1--27:14},
+  publisher = {ACM}
+}
+
+@misc{ext4dax,
+  title = {{Add Support for NV-DIMMs to Ext4}},
+  author = {LWN},
+  year = {2014},
+  note = {\url{https://lwn.net/Articles/613384}}
+}
+
+@inproceedings{pelley2014memory,
+  title = {{Memory Persistency}},
+  author = {Pelley, Steven and Chen, Peter M. and Wenisch, Thomas F.},
+  booktitle = {Proceeding of the 41st Annual International Symposium on Computer Architecuture},
+  series = {ISCA'14},
+  year = {2014},
+  pages = {265--276},
+  publisher = {IEEE Press}
+}
+
+@inproceedings{pmfs,
+  title = {{System Software for Persistent Memory}},
+  author = {Dulloor, Subramanya R and Kumar, Sanjay and Keshavamurthy, Anil and Lantz, Philip and Reddy, Dheeraj and Sankaran, Rajesh and Jackson, Jeff},
+  booktitle = {Proceedings of the Ninth European Conference on Computer Systems},
+  series = {EuroSys '14},
+  year = {2014},
+  isbn = {978-1-4503-2704-6},
+  location = {Amsterdam, The Netherlands},
+  pages = {15:1--15:15},
+  articleno = {15},
+  numpages = {15},
+  url = {http://doi.acm.org/10.1145/2592798.2592814},
+  doi = {10.1145/2592798.2592814},
+  acmid = {2592814},
+  publisher = {ACM},
+  address = {New York, NY, USA},
+} 
+
+@inproceedings{yat,
+  title = {{Yat: A Validation Framework for Persistent Memory Software}},
+  author = {Lantz, Philip and Rao, Dulloor Subramanya and Kumar, Sanjay and Sankaran, Rajesh and Jackson, Jeff},
+  booktitle = {Proceedings of the {USENIX} Annual Technical Conference},
+  series = {ATC'14},
+  pages = {433--438},
+  year = {2014},
+  publisher = {{USENIX} Association}
+}
+
+% --- 2013 --- %
+
+@inproceedings{chidambaram2013optimistic,
+  title = {{Optimistic Crash Consistency}},
+  author = {Chidambaram, Vijay and Pillai, Thanumalayan Sankaranarayana and Arpaci-Dusseau, Andrea C. and Arpaci-Dusseau, Remzi H.},
+  booktitle = {Proceedings of the Twenty-Fourth ACM Symposium on Operating Systems Principles},
+  series = {SOSP'13},
+  year = {2013},
+  pages = {228--243},
+  publisher = {ACM}
+}
+
+@inproceedings{coburn2013from,
+  title = {{From ARIES to MARS: Transaction Support for Next-generation, Solid-state Drives}},
+  author = {Coburn, Joel and Bunker, Trevor and Schwarz, Meir and Gupta, Rajesh and Swanson, Steven},
+  booktitle = {Proceedings of the Twenty-Fourth ACM Symposium on Operating Systems Principles},
+  series = {SOSP'13},
+  year = {2013},
+  pages = {197--212},
+  publisher = {ACM}
+}
+
+@inproceedings{kiln,
+  title = {{Kiln: Closing the Performance Gap Between Systems with and Without Persistence Support}},
+  author = {Zhao, Jishen and Li, Sheng and Yoon, Doe Hyun and Xie, Yuan and Jouppi, Norman P.},
+  booktitle = {Proceedings of the 46th Annual IEEE/ACM International Symposium on Microarchitecture},
+  series = {MICRO'13},
+  year = {2013},
+  pages = {421--432},
+  publisher = {ACM}
+}
+
+@inproceedings{nvmalloc,
+  title = {{Consistent, Durable, and Safe Memory Management for Byte-addressable Non Volatile Main Memory}},
+  author = {Moraru, Iulian and Andersen, David G and Kaminsky, Michael and Tolia, Niraj and Ranganathan, Parthasarathy and Binkert, Nathan},
+  booktitle = {Proceedings of the First ACM SIGOPS Conference on Timely Results in Operating Systems},
+  series = {TRIOS'13},
+  year = {2013},
+  publisher = {ACM}
+}
+
+@inproceedings{park2013failure,
+  title = {{Failure-atomic Msync(): A Simple and Efficient Mechanism for Preserving the Integrity of Durable Data}},
+  author = {Park, Stan and Kelly, Terence and Shen, Kai},
+  booktitle = {Proceedings of the 8th ACM European Conference on Computer Systems},
+  series = {EuroSys'13},
+  year = {2013},
+  pages = {225--238},
+  publisher = {ACM}
+}
+
+@inproceedings{sok,
+  title = {{SoK: Eternal War in Memory}},
+  author = {Szekeres, Laszlo and Payer, Mathias and Wei, Tao and Song, Dawn},
+  booktitle = {Proceedings of the 2013 IEEE Symposium on Security and Privacy},
+  series = {SP'13},
+  pages = {48--62},
+  year = {2013},
+  publisher = {IEEE Computer Society}
+}
+
+% --- 2012 --- %
+
+@article{raim,
+  title = {{IBM zEnterprise Redundant Array of Independent Memory Subsystem}},
+  author = {Meaney, Patrick J and Lastras-Monta{\~n}o, Luis Alfonso and Papazova, Vesselina K and Stephens, Eldee and Johnson, JS and Alves, Luiz C and O'Connor, James A and Clarke, William J},
+  journal = {IBM Journal of Research and Development},
+  volume = {56},
+  number = {1},
+  pages = {43--53},
+  year = {2012},
+  journal={IBM Journal of Research and Development},
+  publisher = {IBM}
+}
+
+@inproceedings{asan,
+  title = {{AddressSanitizer: A Fast Address Sanity Checker}},
+  author = {Serebryany, Konstantin and Bruening, Derek and Potapenko, Alexander and Vyukov, Dmitry},
+  booktitle = {Proceedings of the {USENIX} Annual Technical Conference},
+  series = {ATC'12},
+  year = {2012},
+  publisher = {{USENIX} Association}
+}
+
+@inproceedings{azure-ec,
+  title = {{Erasure Coding in Windows Azure Storage}},
+  author = {Huang, Cheng and Simitci, Huseyin and Xu, Yikang and Ogus, Aaron and Calder, Brad and Gopalan, Parikshit and Li, Jin and Yekhanin, Sergey},
+  booktitle = {Proceedings of the 2012 {USENIX} Conference on Annual Technical Conference},
+  series = {ATC'12},
+  year = {2012},
+  publisher = {{USENIX} Association}
+}
+
+@inproceedings{cosmic,
+  title = {{Cosmic Rays Don't Strike Twice: Understanding the Nature of DRAM Errors and the Implications for System Design}},
+  author = {Hwang, Andy A. and Stefanovici, Ioan A. and Schroeder, Bianca},
+  booktitle = {Proceedings of the Seventeenth International Conference on Architectural Support for Programming Languages and Operating Systems},
+  series = {ASPLOS'12},
+  year = {2012},
+  pages = {111--122},
+  publisher = {ACM}
+}
+
+@inproceedings{workload,
+  title = {{Workload Analysis of a Large-scale Key-value Store}},
+  author = {Atikoglu, Berk and Xu, Yuehai and Frachtenberg, Eitan and Jiang, Song and Paleczny, Mike},
+  booktitle = {Proceedings of the 12th ACM SIGMETRICS/PERFORMANCE Joint International Conference on Measurement and Modeling of Computer Systems},
+  series = {SIGMETRICS'12},
+  year = {2012},
+  pages = {53--64},
+  publisher = {ACM}
+}
+
+@inproceedings{wsp,
+  title = {{Whole-system Persistence}},
+  author = {Narayanan, Dushyanth and Hodson, Orion},
+  booktitle = {Proceedings of the Seventeenth International Conference on Architectural Support for Programming Languages and Operating Systems},
+  series = {ASPLOS'12},
+  pages = {401--410},
+  year = {2012},
+  publisher = {ACM}
+}
+
+% --- 2011 --- %
+
+@inproceedings{cdds,
+  title = {{Consistent and Durable Data Structures for Non-volatile Byte-addressable Memory}},
+  author = {Venkataraman, Shivaram and Tolia, Niraj and Ranganathan, Parthasarathy and Campbell, Roy H.},
+  booktitle = {Proceedings of the 9th {USENIX} Conference on File and Stroage Technologies},
+  series = {FAST'11},
+  year = {2011},
+  publisher = {{USENIX} Association}
+}
+
+@inproceedings{mnemosyne,
+  title = {{Mnemosyne: Lightweight Persistent Memory}},
+  author = {Volos, Haris and Tack, Andres Jaan and Swift, Michael M.},
+  booktitle = {Proceedings of the Sixteenth International Conference on Architectural Support for Programming Languages and Operating Systems},
+  series = {ASPLOS'11},
+  pages = {91--104},
+  year = {2011},
+  publisher = {ACM}
+}
+
+@inproceedings{nvheaps,
+  title = {{NV-Heaps: Making Persistent Objects Fast and Safe with Next-generation, Non-volatile Memories}},
+  author = {Coburn, Joel and Caulfield, Adrian M. and Akel, Ameen and Grupp, Laura M. and Gupta, Rajesh K. and Jhala, Ranjit and Swanson, Steven},
+  booktitle = {Proceedings of the Sixteenth International Conference on Architectural Support for Programming Languages and Operating Systems},
+  series = {ASPLOS'11},
+  pages = {105--118},
+  year = {2011},
+  publisher = {ACM}
+}
+
+% --- 2010 --- %
+
+@inproceedings{yoon2010virtualized,
+  title = {{Virtualized and Flexible ECC for Main Memory}},
+  author = {Yoon, Doe Hyun and Erez, Mattan},
+  booktitle = {Proceedings of the Fifteenth Edition of ASPLOS on Architectural Support for Programming Languages and Operating Systems},
+  series = {ASPLOS'10},
+  year = {2010},
+  pages = {397--408},
+  publisher = {ACM}
+}
+
+@inproceedings{zhang2010end,
+  title = {{End-to-end Data Integrity for File Systems: A ZFS Case Study}},
+  author = {Zhang, Yupu and Rajimwale, Abhishek and Arpaci-Dusseau, Andrea C. and Arpaci-Dusseau, Remzi H.},
+  booktitle = {Proceedings of the 8th {USENIX} Conference on File and Storage Technologies},
+  series = {FAST'10},
+  year = {2010},
+  publisher = {{USENIX} Association}
+}
+
+% --- 2009 --- %
+
+@inproceedings{akritidis2009baggy,
+  title = {{Baggy Bounds Checking: An Efficient and Backwards-compatible Defense Against Out-of-bounds Errors}},
+  author = {Akritidis, Periklis and Costa, Manuel and Castro, Miguel and Hand, Steven},
+  booktitle = {Proceedings of the 18th Conference on {USENIX} Security Symposium},
+  series = {SSYM'09},
+  year = {2009},
+  pages = {51--66},
+  publisher = {{USENIX} Association}
+}
+
+@inproceedings{bpfs,
+  title = {{Better I/O through Byte-addressable, Persistent Memory}},
+  author = {Condit, Jeremy and Nightingale, Edmund B and Frost, Christopher and Ipek, Engin and Lee, Benjamin and Burger, Doug and Coetzee, Derrick},
+  booktitle = {Proceedings of the ACM SIGOPS 22nd Symposium on Operating systems principles},
+  series = {SOSP'09},
+  pages = {133--146},
+  year = {2009},
+  publisher = {ACM}
+}
+
+@inproceedings{castro2009fast,
+  title = {{Fast Byte-granularity Software Fault Isolation}},
+  author = {Castro, Miguel and Costa, Manuel and Martin, Jean-Philippe and Peinado, Marcus and Akritidis, Periklis and Donnelly, Austin and Barham, Paul and Black, Richard},
+  booktitle = {Proceedings of the ACM SIGOPS 22Nd Symposium on Operating Systems Principles},
+  series = {SOSP'09},
+  year = {2009},
+  pages = {45--58},
+  publisher = {ACM}
+}
+
+@inproceedings{dram-errors-wild,
+  title = {{DRAM Errors in the Wild: A Large-scale Field Study}},
+  author = {Schroeder, Bianca and Pinheiro, Eduardo and Weber, Wolf-Dietrich},
+  booktitle = {Proceedings of the Eleventh International Joint Conference on Measurement and Modeling of Computer Systems},
+  series = {SIGMETRICS'09},
+  year = {2009},
+  pages = {193--204},
+  publisher = {ACM}
+}
+
+@misc{hwpoison,
+  title = {{HWPOISON}},
+  author = {LWN},
+  year = {2009},
+  note = {\url{https://lwn.net/Articles/348886}}
+}
+
+@inproceedings{nagarakatte2009softbound,
+  title = {{SoftBound: Highly Compatible and Complete Spatial Memory Safety for C}},
+  author = {Nagarakatte, Santosh and Zhao, Jianzhou and Martin, Milo M.K. and Zdancewic, Steve},
+  booktitle = {Proceedings of the 30th ACM SIGPLAN Conference on Programming Language Design and Implementation},
+  series = {PLDI'09},
+  year = {2009},
+  pages = {245--258},
+  publisher = {ACM}
+}
+
+% --- 2008 --- %
+
+@inproceedings{bairavasundaram2008analysis,
+  title = {{An Analysis of Data Corruption in the Storage Stack}},
+  author = {Bairavasundaram, Lakshmi N. and Arpaci-Dusseau, Andrea C. and Arpaci-Dusseau, Remzi H. and Goodson, Garth R. and Schroeder, Bianca},
+  booktitle = {Proceedings of the 6th {USENIX} Conference on File and Storage Technologies},
+  series = {FAST'08},
+  year = {2008},
+  pages = {8:1--8:28},
+  publisher = {ACM}
+}
+
+@inproceedings{krioukov2008parity,
+  title = {{Parity Lost and Parity Regained}},
+  author = {Krioukov, Andrew and Bairavasundaram, Lakshmi N. and Goodson, Garth R. and Srinivasan, Kiran and Thelen, Randy and Arpaci-Dusseau, Andrea C. and Arpaci-Dussea, Remzi H.},
+  booktitle = {Proceedings of the 6th {USENIX} Conference on File and Storage Technologies},
+  series = {FAST'08},
+  year = {2008},
+  pages = {9:1--9:15},
+  publisher = {{USENIX} Association}
+}
+
+% --- 2007 --- %
+
+@inproceedings{sector-errors,
+  title = {{Understanding Latent Sector Errors and How to Protect Against Them}},
+  author = {Schroeder, Bianca and Damouras, Sotirios and Gill, Phillipa},
+  booktitle = {Proceedings of the 8th {USENIX} Conference on File and Storage Technologies},
+  issue_date = {September 2010},
+  volume = {6},
+  number = {3},
+  month = sep,
+  year = {2010},
+  issn = {1553-3077},
+  pages = {9:1--9:23},
+  articleno = {9},
+  numpages = {23},
+  url = {http://doi.acm.org/10.1145/1837915.1837917},
+  doi = {10.1145/1837915.1837917},
+  acmid = {1837917},
+  publisher = {ACM},
+  address = {New York, NY, USA},
+  keywords = {Latent sector errors, data loss, failure data, failure modeling, field data, parity, redundancy, scrubbing, storage reliability},
+} 
+
+
+@inproceedings{valgrind,
+  title = {{Valgrind: A Framework for Heavyweight Dynamic Binary Instrumentation}},
+  author = {Nethercote, Nicholas and Seward, Julian},
+  booktitle = {Proceedings of the 28th ACM SIGPLAN Conference on Programming Language Design and Implementation},
+  series = {PLDI'07},
+  year = {2007},
+  pages = {89--100},
+  publisher = {ACM}
+}
+
+% --- 2006 --- %
+
+@inproceedings{diehard,
+  title = {{DieHard: Probabilistic Memory Safety for Unsafe Languages}},
+  author = {Berger, Emery D. and Zorn, Benjamin G.},
+  booktitle = {Proceedings of the 27th ACM SIGPLAN Conference on Programming Language Design and Implementation},
+  series = {PLDI'06},
+  year = {2006},
+  pages = {158--168},
+  publisher = {ACM}
+}
+
+@inproceedings{safecode,
+  title = {{SAFECode: Enforcing Alias Analysis for Weakly Typed Languages}},
+  author = {Dhurjati, Dinakar and Kowshik, Sumant and Adve, Vikram},
+  booktitle = {Proceedings of the 27th ACM SIGPLAN Conference on Programming Language Design and Implementation},
+  series = {PLDI'06},
+  year = {2006},
+  pages = {144--157},
+  publisher = {ACM}
+}
+
+% --- 2005 --- %
+
+@inproceedings{ironfs,
+  title = {{IRON File Systems}},
+  author = {Prabhakaran, Vijayan and Bairavasundaram, Lakshmi N. and Agrawal, Nitin and Gunawi, Haryadi S. and Arpaci-Dusseau, Andrea C. and Arpaci-Dusseau, Remzi H.},
+  booktitle = {Proceedings of the Twentieth ACM Symposium on Operating Systems Principles},
+  series = {SOSP'05},
+  year = {2005},
+  pages = {206--220},
+  publisher = {ACM},
+}
+
+% --- 2002 --- %
+
+@inproceedings{jim2002cyclone,
+  title = {{Cyclone: A Safe Dialect of C}},
+  author = {Jim, Trevor and Morrisett, J. Greg and Grossman, Dan and Hicks, Michael W. and Cheney, James and Wang, Yanling},
+  booktitle = {Proceedings of the {USENIX} Annual Technical Conference},
+  series = {ATC'02},
+  year = {2002},
+  pages = {275--288},
+  publisher = {{USENIX} Association}
+}
+
+@inproceedings{necula2002ccured,
+  title = {{CCured: Type-safe Retrofitting of Legacy Code}},
+  author = {Necula, George C. and McPeak, Scott and Weimer, Westley},
+  booktitle = {Proceedings of the 29th ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages},
+  series = {POPL'02},
+  year = {2002},
+  pages = {128--139},
+  publisher = {ACM}
+}
+
+% --- 1999 --- %
+
+@misc{chipkill,
+  title={{Chipkill Memory}},
+  year={1999},
+  author={{IBM}},
+  note={\url{http://www-05.ibm.com/hu/termekismertetok/xseries/dn/chipkill.pdf}}
+}
+
+% --- 1997 --- %
+
+@inproceedings{lowell1997free,
+  author = {Lowell, David E. and Chen, Peter M.},
+  title = {{Free Transactions with Rio Vista}},
+  booktitle = {Proceedings of the Sixteenth ACM Symposium on Operating Systems Principles},
+  series = {SOSP'97},
+  year = {1997},
+  pages = {92--101},
+  publisher = {ACM}
+}
+
+% --- 1996 --- %
+
+@inproceedings{chen1996the,
+  title = {{The Rio File Cache: Surviving Operating System Crashes}},
+  author = {Chen, Peter M. and Ng, Wee Teck and Chandra, Subhachandra and Aycock, Christopher and Rajamani, Gurushankar and Lowell, David},
+  booktitle = {Proceedings of the Seventh International Conference on Architectural Support for Programming Languages and Operating Systems},
+  series = {ASPLOS'96},
+  year = {1996},
+  pages = {74--83},
+  publisher = {ACM}
+}
+
+% --- 1992 --- %
+
+@article{mohan1992aries,
+  title = {{ARIES: A Transaction Recovery Method Supporting Fine-granularity Locking and Partial Rollbacks Using Write-ahead Logging}},
+  author = {Mohan, C. and Haderle, Don and Lindsay, Bruce and Pirahesh, Hamid and Schwarz, Peter},
+  journal = {ACM Trans. Database Syst.},
+  volume = {17},
+  number = {1},
+  year = {1992},
+  pages = {94--162},
+  publisher = {ACM}
+}

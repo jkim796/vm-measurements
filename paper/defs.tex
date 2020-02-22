@@ -1,0 +1,71 @@
+%%%%% Common Defs %%%%%
+
+\newcommand{\app}[1]{{\sc #1}}
+
+%\newcommand{\boldparagraph}[1]{\vspace*{-0ex}\paragraph{#1}}
+\newcommand{\boldparagraph}[1]{\vspace*{1ex}\noindent\textbf{#1}\hspace{1em}}
+
+\newcommand{\BigO}[1]{${\cal O}(#1)$}
+\newcommand{\BigOmega}[1]{$\Omega(#1)$}
+\newcommand{\BigTheta}[1]{$\Theta(#1)$}
+
+\newcommand{\ceiling}[1]{\left\lceil #1 \right\rceil}
+%\newcommand{\C}[2]{{#1 \choose #2}}
+
+\newcommand{\etal}{\textit{et al.}}
+
+\newcommand{\faM}{\lfloor \alpha M \rfloor}
+\newcommand{\figtitle}[1]{#1 --}
+\newcommand{\fixme}[1]{{\color{red}\textbf{#1}}}
+
+\newcommand{\ignore}[1]{}
+
+\newcommand{\mm}{mm$^2$}
+
+%\newcommand{\shortenum}{\vspace*{-0.1in}}
+%\newcommand{\sparagraph}[1]{\vspace*{0.0in}\paragraph{#1}}
+
+\newcommand{\us}[1]{$\mu$s}
+
+\newcommand{\x}[1]{$\times$}
+
+\newcommand{\refalg}[1]{Algorithm~\ref{#1}}
+\newcommand{\reffig}[1]{Figure~\ref{#1}}
+\newcommand{\reftab}[1]{Table~\ref{#1}}
+\newcommand{\reflst}[1]{Listing~\ref{#1}}
+\newcommand{\refsec}[1]{Section~\ref{#1}}
+\newcommand{\refeq}[1]{(\ref{#1})}
+
+
+\newcommand{\myitem}[1]{\item \textbf{#1}}
+%%%%% Package Defs %%%%%
+
+\lstdefinestyle{cstyle}{
+  float=tp,
+  floatplacement=tbp,
+  abovecaptionskip=5pt,
+  breaklines=true,
+  captionpos=b,
+  frame=lines,
+  xleftmargin=4pt,
+  language=C,
+% numbers=left,
+  showstringspaces=false,
+% belowcaptionskip=1\baselineskip,
+  basicstyle=\footnotesize\ttfamily,
+  identifierstyle=\color{black},
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\color{gray},
+  stringstyle=\color{orange!70!black},
+  morekeywords={size_t, uint64_t, PMEMoid, PMEMobjpool}
+}
+
+%%%%% Text Color %%%%%
+
+%\definecolor{pink}{rgb}{1.0,0.47,0.6}
+%\definecolor{orange}{rgb}{1.0,0.5,0.0}
+%\definecolor{cyanish}{rgb}{0,0.8,1.0}
+
+%%%%% renewcommand %%%%%
+
+\renewcommand{\em}{\it}

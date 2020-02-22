@@ -1,0 +1,49 @@
+\documentclass[letterpaper,twocolumn,10pt]{article}
+\usepackage{usenix2019_v3,epsfig,endnotes}
+\input{texheader}
+
+\pagestyle{empty} % to suppress page numbers
+\begin{document}
+
+%don't want date printed
+% \date{}
+
+\title{\bf Understanding the Performances of Different Virtualization Techniques}
+\author{
+  {\rm Student1}\\
+  University of California, San Diego\\
+  \textit{student1@eng.ucsd.edu}
+  \and
+  {\rm Student2}\\
+  University of California, San Diego\\
+  \textit{student2@cs.ucsd.edu}
+  \and
+  {\rm Student3}\\
+  University of California, San Diego\\
+  \textit{student3@cs.ucsd.edu}
+} % end author
+
+\maketitle
+
+% Use the following at camera-ready time to suppress page numbers.
+% Comment it out when you first submit the paper for review.
+% \thispagestyle{empty}
+
+% \setlength{\abstitleskip}{-1.2em} % Use this if title has two lines
+
+\input{abstract}
+\input{introduction}
+\input{background}
+% \input{design}
+\input{evaluation}
+\input{related}
+\input{conclusion}
+% \input{acknowledgments}
+% \input{discussion}
+
+{\normalsize \bibliographystyle{plain}
+\bibliography{paper}}
+
+% \theendnotes
+
+\end{document}
