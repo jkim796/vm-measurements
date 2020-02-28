@@ -71,7 +71,7 @@ fio_randwrite_native() {
 }
 
 syscall_syscall_native() {
-    if [[ ! -f syscall.c ]]; then
+    if [[ ! -f syscall ]]; then
 	cp ${DOCKER_SCRIPT_DIR}/workloads/syscall/syscall.c .
 	gcc -O2 -o syscall syscall.c
     fi
