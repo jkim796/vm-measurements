@@ -21,15 +21,52 @@ ROOT_DIR=~/vm-measurements
 DOCKER_SCRIPT_DIR=${ROOT_DIR}/benchmark-tools
 
 sysbench_cpu_native() {
-    # Run sysbench once as a warm-up and take the second result
+    # Parameters
+    # --num-threads=N (default: )
+    num_threads_p=( 1 2 4 8 )
+    # --max-time=N (default: )
+    max_time_p=( 0 )
+    # --cpu-max-prime=N (default: )
+    cpu_max_prime_p=( 10000 )
+
     MEMSIZE=5G
 
-    sysbench --threads=8 --memory-total-size=${MEMSIZE} memory run > /dev/null
-    echo "sysbench --threads=1 cpu run"
-    sysbench --threads=1 cpu run
+    for num_threads in "${num_threads_p[@]}"; do
+	for max_time in "${max_time_p[@]}"; do
+	    for cpu_max_prime in "${cpu_max_prime_p[@]}"; do
+		# Run sysbench once as a warm-up and take the second result
+		sysbench --threads=8 --memory-total-size=${MEMSIZE} memory run > /dev/null
+
+		# Actual run
+		echo "sysbench --num-threads=${num_threads} --max-time=${max_time} --cpu-max-prime=${cpu_max_prime} cpu run"
+		sysbench --num-threads=${num_threads} --max-time=${max_time} --cpu-max-prime=${cpu_max_prime} cpu run
+	    done
+	done
+    done
 }
 
 sysbench_memory_native() {
+    # Parameters
+    # --num-threads=N (default: )
+    #
+    # --memory-block-size=SIZE
+    # size of memory block for test [1K]
+    #
+    # --memory-total-size=SIZE
+    # total size of data to transfer [100G]
+    #
+    # --memory-scope=STRING
+    # memory access scope {global,local} [global]
+    #
+    # --memory-hugetlb=[on|off]
+    # allocate memory from HugeTLB pool [off]
+    #
+    # --memory-oper=STRING
+    # type of memory operations {read, write, none} [write]
+    #
+    # --memory-access-mode=STRING
+    # memory access mode {seq,rnd} [seq]
+
     # Run sysbench once as a warm-up and take the second result
     MEMSIZE=5G
 
