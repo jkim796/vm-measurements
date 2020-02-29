@@ -3,8 +3,6 @@
 %
 Operating Systems (OS) is a piece of software that manages and virtualizes hardware for applications.
 %
-Operating Systems (OS) is a piece of software that manages and virtualizes hardware for applications.
-%
 As OS abstracts away the complexity of orchestrating various hardware components such as CPUs, Memory, and I/O as well as different applications, it has been instrumental in reducing the burden of the programmers.
 %
 Virtualization refers to adding another level of indirection to run OSes on an abstraction of hardware such as CPUs, GPUs, and FPGAs.
@@ -20,3 +18,25 @@ As VM runs a complete OS on emulated hardware, it is too heavy to scale.
 On the other hand, the Containers does not provide as strong security boundaries as VMs.
 %
 Between the spectrum of these two major types is the Light VM, which strikes balance between security and performance.
+%
+
+The aim of the work is to provide a variety of performance measurements to analyze the performance of different types of virtualization: VM, Light VM, and Containers.
+%
+We first selected gVisor as a benchmark to analyze the different parts of the systems such as CPU and memory performance.
+%
+We also evaluated the three different virtualization using achine learning workload on TensorFlow and ffmpeg.
+%
+
+INSIGHT INSIGHT
+
+%
+To this end, this report makes the following contributions:
+
+\begin{enumerate}
+
+\item We compare the performance of different virtualization schemes on the gVisor benchmark and analyze them to better understand the overheads
+\item We also measure real life applications on different virtualization schemes on the spectrum to understand their implication in real applications
+
+\end{enumerate}
+
+All the experiment scripts, experimental results, and in-depth analysis are available in \url{https://github.com/jkim796/vm-measurements}.
