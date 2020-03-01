@@ -18,7 +18,8 @@ class Platform(Enum):
 
 
 class Benchmark(object):
-    RESULTS_CSV_DIR = './results'
+    EXPERIMENTS_ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+    RESULTS_CSV_DIR = os.path.join(EXPERIMENTS_ROOT_DIR, 'results')
 
     def __init__(self, platform=Platform.NATIVE):
         self.platform = platform
@@ -85,6 +86,7 @@ class SysbenchCPU(Benchmark):
         if not os.path.isdir(self.RESULTS_CSV_DIR):
             os.mkdir(self.RESULTS_CSV_DIR)
         filepath = os.path.join(self.RESULTS_CSV_DIR, self.csv_filename)
+        print(filepath)
 
         # Write CSV headers when creating file for first time
         if not os.path.isfile(filepath):
