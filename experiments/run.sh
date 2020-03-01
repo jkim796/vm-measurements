@@ -23,7 +23,7 @@ DOCKER_SCRIPT_DIR=${ROOT_DIR}/benchmark-tools
 sysbench_cpu_native() {
     # Parameters
     # --num-threads=N (default: )
-    num_threads_p=( 1 2 4 8 )
+    num_threads_p=( 1 )
     # --max-time=N (default: )
     max_time_p=( 0 )
     # --cpu-max-prime=N (default: )
@@ -76,19 +76,43 @@ sysbench_memory_native() {
 }
 
 fio_randread_native() {
+    # Parameters
+    #
+    # ramp_time=time ()
+    #
+    # ioengine=str
+    # let's use psync
+    #
+    # path (file.dat)
+    #
+    # bs (use 4096)
+    #
+    # rw (read, write, randread, randwrite)
+    #
+    # nrfiles=int (default: 1, set same as number of threads)
+    #
+    # filesize
+    #
+    # thread
+    #
+    # numjobs= same as nrfiles
+    #
+    # time_based (set/noset)
+    #
+    # runtime=time(s) only if time_based set
+
     workload=read
     ioengine=sync
     size=5000000
-    iodepth=4
     blocksize="1m"
     time=""
-    path="/disk/file.dat"
+    path="file.dat"
     ramp_time=0
 
     echo "fio --output-format=json --name=test --ramp_time=${ramp_time} --ioengine=${ioengine} --size=${size} \
 	--filename=${path} --iodepth=${iodepth} --bs=${blocksize} --rw=${workload} ${time}"
     fio --output-format=json --name=test --ramp_time=${ramp_time} --ioengine=${ioengine} --size=${size} \
-	--filename=${path} --iodepth=${iodepth} --bs=${blocksize} --rw=${workload} ${time}
+	--filename=${path} --bs=${blocksize} --rw=${workload} ${time}
 }
 
 fio_randwrite_native() {
@@ -108,6 +132,11 @@ fio_randwrite_native() {
 }
 
 syscall_syscall_native() {
+    # Parameters
+    #
+    # count
+    #
+
     if [[ ! -f syscall ]]; then
 	cp ${DOCKER_SCRIPT_DIR}/workloads/syscall/syscall.c .
 	gcc -O2 -o syscall syscall.c
