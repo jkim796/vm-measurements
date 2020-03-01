@@ -1,11 +1,52 @@
 \section{Background}
 \label{sec:background}
 %
-Virtualization
+The need of virtualization is constantly increasing as many cloud applications and IT infrastructures run in virtualized environments.
+%
+For example, many of the web services these days are provided using virtualization.
+%
+However, there is a spectrum of virtualization methods from one that virtualizes the complete machine where the OS would be installed to one where only the crucial parts would sit on top while the process would run using the host OS system calls.
+%
+This section outlines the major differences in Virtual Machines, Containers, and Light VMs.
 
 \subsection{Virtual Machines}
+%
+Virtual Machines (VMs) aim to provide full functionality of a physical computer that emulates a physical machine.
+%
+VMs virtualize CPU, Memory, and even I/O.
+%
+For example, CPU can be virtualized using software binary translation; memory can be virtualized using shadow paging; I/O can be virtualized by emulating the device.
+%
+There are also hardware solutions such as VT-x, EPT, and IOMMU to virtualize CPU, memory, and I/O, respectively.
+%
+On the performance side, while these methods provide virtualization, it incurs much overhead that may be unfit for some application scenarios.
+%
+However, as this classical virtualization enables complete isolation of different guest OSes, it is known to provide more secure virtualization than other methods such as containers or light VMs.
+
 
 \subsection{Containers}
+%
+While Virtual Machines provide the required emulation of physical systems, they are not fit for today's cloud usages due to their overhead.
+%
+Virtualization incurs various indirections that cause significant performance overhead.
+%
+Also, their large memory footprint and slow startup time make them rather unfit in situations where user experience are of large concern.
+%
+As such, container has been introduced to provide a lightweight virtualization that can run various services and applications while supporting wide range of hardware.
+%
+From a developers point of view, it not only provides a clean environment where one does not have to worry about the dependencies for deployment but also can automate the DevOps.
+%
+On the other hand, from an administrators point of view, it eliminates a lot of work regarding setting up the environment.
+%
+While the guest OS in the traditional VMs sit on the hypervisor (Type II) installed on host OS, containers are much lighter as much of the OS are shared.
+%
+Containers are much faster as all the processes are run straight on the host, so CPU performance is equal to the native performance.
+%
+While there are some memory overhead, it is only for the accounting purposes and are very small.
+%
+However, while processes are isolated, containers' interface is the OS system calls which are much harder to protect.
 
-\subsection{Light VM}
+%\subsection{Light VMs}
+%
+%As discussed above, virtual machines provide complete isolation at the cost of some performance degradation, and containers provide virtualization with imperceptible difference in performance while giving up a little on performance.
 %
