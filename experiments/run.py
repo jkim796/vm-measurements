@@ -2,6 +2,9 @@ import argparse
 import subprocess
 import shlex
 import configparser
+import re
+import csv
+import os
 
 from enum import Enum
 from typing import List
@@ -15,22 +18,27 @@ class Platform(Enum):
 
 
 class Benchmark(object):
-    pass
+
+    def __init__(self, platform=Platform.NATIVE):
+        self.platform = platform
 
 
 class SysbenchCPU(Benchmark):
+    EVENTS_PER_SECOND = 'events per second'
+    REGEX_FLOAT = '\d+\.\d+'
 
     def __init__(self, num_threads, max_time, cpu_max_prime, platform=Platform.NATIVE):
+        super(SysbenchCPU, self).__init__(platform)
         self.num_threads = num_threads
         self.max_time = max_time
         self.cpu_max_prime = cpu_max_prime
-        self.platform = platform
+        self.csv_headers = ['num_threads', 'max_time', 'cpu_max_prime', 'events_per_second']
 
     def run(self):
         if self.platform == Platform.NATIVE:
-            self.run_native()
+            return self.run_native()
         elif self.platform == Platform.DOCKER:
-            self.run_docker()
+            return self.run_docker()
         else:
             pass
 
@@ -39,10 +47,37 @@ class SysbenchCPU(Benchmark):
         process = subprocess.run(shlex.split(cmd),
                                  stdout=subprocess.PIPE,
                                  universal_newlines=True)
-        print(process.stdout)
+        output_str = process.stdout
+        return output_str.split('\n')
 
     def run_docker(self):
         pass
+
+    def parse_output(self, output):
+        for line in output:
+            if self.EVENTS_PER_SECOND in line:
+                matches = re.findall(self.REGEX_FLOAT, line)
+                # There should only be one floating point number
+                events_per_second = float(matches[0])
+                return events_per_second
+
+    def write_to_csv(self, data, filepath):
+        """Appends the given parameters and performance metric values to the csv file."""
+        csv_row = {'num_threads': self.num_threads,
+                   'max_time': self.max_time,
+                   'cpu_max_prime': self.cpu_max_prime,
+                   'events_per_second': data}
+        if not os.path.isdir('./results'):
+            os.mkdir('./results')
+        filepath = './results/' + filepath
+        if not os.path.isfile(filepath):
+            with open(filepath, 'w') as csv_file:
+                csv_writer = csv.DictWriter(csv_file, fieldnames=self.csv_headers)
+                csv_writer.writeheader()
+
+        with open(filepath, 'a') as csv_file:
+            csv_writer = csv.DictWriter(csv_file, fieldnames=self.csv_headers)
+            csv_writer.writerow(csv_row)
 
 
 class BenchmarkParser(object):
@@ -78,15 +113,16 @@ class Dispatcher(object):
             bench_runner(bench_config)
 
     def dispatch_sysbench_cpu(self, bench_config):
-        # Get the class
         benchmark_name = self._strip_multidict_token(bench_config[BenchmarkParser.BENCHMARK])
-
         # Get the parameters
         num_threads = bench_config['num_threads']
         max_time = bench_config['max_time']
         cpu_max_prime = bench_config['cpu_max_prime']
+
         sysbench_cpu = SysbenchCPU(num_threads, max_time, cpu_max_prime)
-        sysbench_cpu.run()
+        output = sysbench_cpu.run()
+        data = sysbench_cpu.parse_output(output)
+        sysbench_cpu.write_to_csv(data, 'sysbench_cpu.csv')
 
     def dispatch_sysbench_memory(self, bench_config):
         pass
