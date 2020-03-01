@@ -10,6 +10,9 @@ from benchmark import Benchmark, Platform
 class SysbenchCPU(Benchmark):
     EVENTS_PER_SECOND = 'events per second'
     REGEX_FLOAT = '\d+\.\d+'
+    PARAM_NUM_THREADS = 'num_threads'
+    PARAM_MAX_TIME = 'max_time'
+    PARAM_CPU_MAX_PRIME = 'cpu_max_prime'
 
     def __init__(self, num_threads, max_time, cpu_max_prime, platform=Platform.NATIVE):
         super(SysbenchCPU, self).__init__(platform)
