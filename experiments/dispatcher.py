@@ -5,12 +5,10 @@ from sysbench_cpu import SysbenchCPU
 
 class Dispatcher(object):
     MSG_DISPATCH_LOOKUP_NOT_FOUND = 'Key not found.'
-    BENCH_SYSBENCH_CPU = 'sysbench_cpu'
-    BENCH_SYSBENCH_MEMORY = 'sysbench_memory'
 
     def __init__(self):
-        self.dispatch_lookup = {self.BENCH_SYSBENCH_CPU: self.dispatch_sysbench_cpu,
-                                self.BENCH_SYSBENCH_MEMORY: self.dispatch_sysbench_memory}
+        self.dispatch_lookup = {SysbenchCPU.BENCH_NAME: self.dispatch_sysbench_cpu,
+                                'sysbench_memory': self.dispatch_sysbench_memory}
 
     def dispatch_benchmarks(self, bench_configs):
         for bench_config in bench_configs:

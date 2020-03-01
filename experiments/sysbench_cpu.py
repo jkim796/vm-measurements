@@ -8,6 +8,7 @@ from benchmark import Benchmark, Platform
 
 
 class SysbenchCPU(Benchmark):
+    BENCH_NAME = 'sysbench_cpu'
     EVENTS_PER_SECOND = 'events per second'
     REGEX_FLOAT = '\d+\.\d+'
     PARAM_NUM_THREADS = 'num_threads'
@@ -16,19 +17,13 @@ class SysbenchCPU(Benchmark):
 
     def __init__(self, num_threads, max_time, cpu_max_prime, platform=Platform.NATIVE):
         super(SysbenchCPU, self).__init__(platform)
+        # Parameters
         self.num_threads = num_threads
         self.max_time = max_time
         self.cpu_max_prime = cpu_max_prime
+
         self.csv_headers = ['num_threads', 'max_time', 'cpu_max_prime', 'events_per_second']
         self.csv_filename = 'sysbench_cpu.csv'
-
-    def run(self):
-        if self.platform == Platform.NATIVE:
-            return self.run_native()
-        elif self.platform == Platform.DOCKER:
-            return self.run_docker()
-        else:
-            pass
 
     def run_native(self):
         cmd = f"sysbench --threads={self.num_threads} --max-time={self.max_time} --cpu-max-prime={self.cpu_max_prime} cpu run"
@@ -44,6 +39,7 @@ class SysbenchCPU(Benchmark):
     def parse_output(self, output):
         for line in output:
             if self.EVENTS_PER_SECOND in line:
+                print(f"[sysbench cpu] {line}")
                 matches = re.findall(self.REGEX_FLOAT, line)
                 # There should only be one floating point number
                 events_per_second = float(matches[0])
@@ -59,7 +55,6 @@ class SysbenchCPU(Benchmark):
         if not os.path.isdir(self.RESULTS_CSV_DIR):
             os.mkdir(self.RESULTS_CSV_DIR)
         filepath = os.path.join(self.RESULTS_CSV_DIR, self.csv_filename)
-        print(filepath)
 
         # Write CSV headers when creating file for first time
         if not os.path.isfile(filepath):
@@ -67,7 +62,7 @@ class SysbenchCPU(Benchmark):
                 csv_writer = csv.DictWriter(csv_file, fieldnames=self.csv_headers)
                 csv_writer.writeheader()
 
-        # Append row to csv file
+        # Append row to CSV file
         with open(filepath, 'a') as csv_file:
             csv_writer = csv.DictWriter(csv_file, fieldnames=self.csv_headers)
             csv_writer.writerow(csv_row)

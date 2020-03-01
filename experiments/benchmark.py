@@ -16,7 +16,12 @@ class Benchmark(object):
         self.platform = platform
 
     def run(self):
-        pass
+        if self.platform == Platform.NATIVE:
+            return self.run_native()
+        elif self.platform == Platform.DOCKER:
+            return self.run_docker()
+        else:
+            pass
 
     def run_native(self):
         pass
