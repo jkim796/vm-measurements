@@ -58,10 +58,7 @@ class SysbenchCPU(Benchmark):
         env_linenos = []
         for lineno, line in enumerate(lines):
             if 'ENV' in line:
-                print(lineno, line)
                 env_linenos.append(lineno)
-        print(lines)
-        print(len(lines))
 
         # Sysbench-specific: find the last line
         last_line = len(lines) - 1
@@ -128,7 +125,15 @@ class SysbenchCPU(Benchmark):
         # Check if results directory have been created
         if not os.path.isdir(self.RESULTS_CSV_DIR):
             os.mkdir(self.RESULTS_CSV_DIR)
-        filepath = os.path.join(self.RESULTS_CSV_DIR, self.csv_filename)
+
+        if self.platform == Platform.NATIVE:
+            if not os.path.isdir(self.NATIVE_RESULTS_DIR):
+                os.mkdir(self.NATIVE_RESULTS_DIR)
+            filepath = os.path.join(self.NATIVE_RESULTS_DIR, self.csv_filename)
+        elif self.platform == Platform.DOCKER:
+            if not os.path.isdir(self.DOCKER_RESULTS_DIR):
+                os.mkdir(self.DOCKER_RESULTS_DIR)
+            filepath = os.path.join(self.DOCKER_RESULTS_DIR, self.csv_filename)
 
         # Write CSV headers when creating file for first time
         if not os.path.isfile(filepath):

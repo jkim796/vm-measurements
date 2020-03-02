@@ -11,6 +11,8 @@ class Platform(Enum):
 class Benchmark(object):
     EXPERIMENTS_ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
     RESULTS_CSV_DIR = os.path.join(EXPERIMENTS_ROOT_DIR, 'results')
+    NATIVE_RESULTS_DIR = os.path.join(RESULTS_CSV_DIR, 'native')
+    DOCKER_RESULTS_DIR = os.path.join(RESULTS_CSV_DIR, 'docker')
 
     def __init__(self, platform=Platform.NATIVE):
         self.platform = platform

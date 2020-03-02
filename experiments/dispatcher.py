@@ -23,7 +23,6 @@ class Dispatcher(object):
             bench_runner(bench_config)
 
     def dispatch_sysbench_cpu(self, bench_config):
-        benchmark_name = self._strip_multidict_token(bench_config[BenchmarkParser.BENCHMARK])
         # Get the parameters
         num_threads = bench_config[SysbenchCPU.PARAM_NUM_THREADS]
         max_time = bench_config[SysbenchCPU.PARAM_MAX_TIME]
