@@ -2,11 +2,15 @@ from benchmark_parser import BenchmarkParser
 from util import MultiDict
 from sysbench_cpu import SysbenchCPU
 
+from benchmark import Platform
+
 
 class Dispatcher(object):
     MSG_DISPATCH_LOOKUP_NOT_FOUND = 'Key not found.'
 
-    def __init__(self):
+    def __init__(self, platform: str):
+        # Platform Enum can convert given string (platform) to corresponding Enum
+        self.platform = Platform[platform.upper()]
         self.dispatch_lookup = {SysbenchCPU.BENCH_NAME: self.dispatch_sysbench_cpu,
                                 'sysbench_memory': self.dispatch_sysbench_memory}
 
@@ -25,7 +29,7 @@ class Dispatcher(object):
         max_time = bench_config[SysbenchCPU.PARAM_MAX_TIME]
         cpu_max_prime = bench_config[SysbenchCPU.PARAM_CPU_MAX_PRIME]
 
-        sysbench_cpu = SysbenchCPU(num_threads, max_time, cpu_max_prime)
+        sysbench_cpu = SysbenchCPU(num_threads, max_time, cpu_max_prime, self.platform)
         output = sysbench_cpu.run()
         data = sysbench_cpu.parse_output(output)
         sysbench_cpu.write_to_csv(data)

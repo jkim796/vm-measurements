@@ -4,6 +4,8 @@ import re
 import shlex
 import subprocess
 
+from experiments import WORKLOADS_DIR
+
 from benchmark import Benchmark, Platform
 
 
@@ -15,10 +17,16 @@ class SysbenchCPU(Benchmark):
     EVENTS_PER_SECOND = 'events per second'
     REGEX_FLOAT = '\d+\.\d+'
 
-    # Parameters
+    # Experiment parameters
     PARAM_NUM_THREADS = 'num_threads'
     PARAM_MAX_TIME = 'max_time'
     PARAM_CPU_MAX_PRIME = 'cpu_max_prime'
+
+    ORIGINAL_DOCKERFILE_DIR = os.path.join(WORKLOADS_DIR, 'sysbench')
+    # Default Dockerfile provided by benchmark-tools (backed up to .Dockerfile)
+    DEFAULT_DOCKERFILE_NAME = os.path.join(ORIGINAL_DOCKERFILE_DIR, '.Dockerfile')
+    # Dockerfile we'll use with the parameters in INI file
+    DOCKERFILE_NAME = 'Dockerfile'
 
     def __init__(self, num_threads, max_time, cpu_max_prime, platform=Platform.NATIVE):
         super(SysbenchCPU, self).__init__(platform)
@@ -39,7 +47,33 @@ class SysbenchCPU(Benchmark):
         return output_str.split('\n')
 
     def run_docker(self):
-        pass
+        # Copy the default Dockerfile into a list of strings
+        with open(self.DEFAULT_DOCKERFILE_NAME, 'r') as f:
+            lines = f.readlines()
+
+        # Find the lines with ENV declarations
+        env_linenos = []
+        for lineno, line in enumerate(lines):
+            if 'ENV' in line:
+                print(lineno, line)
+                env_linenos.append(lineno)
+        print(lines)
+        print(len(lines))
+
+        # Remove these lines - assumes ENV lines are grouped together
+        del lines[env_linenos[0] : env_linenos[-1] + 1]
+        print(lines)
+        print(len(lines))
+
+        # Create ENV declaration strings
+        env_decls = [f'ENV threads {self.num_threads}']
+
+        # Insert the new ENV decalrations to lines
+
+        # Write to Dockerfile
+
+        # Run perf.py script
+
 
     def parse_output(self, output):
         for line in output:
