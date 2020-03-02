@@ -8,9 +8,14 @@ from benchmark import Benchmark, Platform
 
 
 class SysbenchCPU(Benchmark):
+    # Benchmark name as used in INI file sections
     BENCH_NAME = 'sysbench_cpu'
+
+    # Performance metric
     EVENTS_PER_SECOND = 'events per second'
     REGEX_FLOAT = '\d+\.\d+'
+
+    # Parameters
     PARAM_NUM_THREADS = 'num_threads'
     PARAM_MAX_TIME = 'max_time'
     PARAM_CPU_MAX_PRIME = 'cpu_max_prime'
@@ -51,6 +56,7 @@ class SysbenchCPU(Benchmark):
                    'max_time': self.max_time,
                    'cpu_max_prime': self.cpu_max_prime,
                    'events_per_second': data}
+
         # Check if results directory have been created
         if not os.path.isdir(self.RESULTS_CSV_DIR):
             os.mkdir(self.RESULTS_CSV_DIR)
