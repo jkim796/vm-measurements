@@ -4,6 +4,7 @@ from sysbench_cpu import SysbenchCPU
 from sysbench_memory import SysbenchMemory
 from fio import Fio, FioSubBench
 from syscall import Syscall
+from ml_tensorflow import MLTensorflow
 
 from benchmark import Platform
 
@@ -18,8 +19,8 @@ class Dispatcher(object):
                                 SysbenchMemory.BENCH_NAME: self.dispatch_sysbench_memory,
                                 'fio_randread': self.dispatch_fio,
                                 'fio_randwrite': self.dispatch_fio,
-                                'syscall_syscall': self.dispatch_syscall_syscall,
-                                'ml_tensorflow': self.dispatch_ml_tensorflow,
+                                Syscall.BENCH_NAME: self.dispatch_syscall_syscall,
+                                MLTensorflow.BENCH_NAME: self.dispatch_ml_tensorflow,
                                 'media_ffmpeg': self.dispatch_media_ffmpeg}
 
     def dispatch_benchmarks(self, bench_configs):
@@ -97,7 +98,12 @@ class Dispatcher(object):
 
     def dispatch_ml_tensorflow(self, bench_config):
         # Get the parameters
-        pass
+        network = bench_config[MLTensorflow.PARAM_NETWORK]
+
+        ml_tensorflow = MLTensorflow(network, self.platform)
+        output = ml_tensorflow.run()
+        data = ml_tensorflow.parse_output(output)
+        ml_tensorflow.write_to_csv(data)
 
     def dispatch_media_ffmpeg(self, bench_config):
         # Get the parameters
