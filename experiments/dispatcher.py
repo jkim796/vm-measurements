@@ -65,7 +65,7 @@ class Dispatcher(object):
         # Get the parameters
         ramp_time = bench_config[Fio.PARAM_RUNTIME]
         ioengine = bench_config[Fio.PARAM_IOENGINE]
-        filename = bench_config[Fio.PARAM_FILENAME]
+        #filename = bench_config[Fio.PARAM_FILENAME]
         bs = bench_config[Fio.PARAM_BS]
         rw = bench_config[Fio.PARAM_RW]
         nrfiles = bench_config[Fio.PARAM_NRFILES]
@@ -82,7 +82,7 @@ class Dispatcher(object):
             sub_bench = FioSubBench.RANDWRITE
 
         # Instantiate the corresponding benchmark runner
-        fio = Fio(ramp_time, ioengine, filename, bs, rw, nrfiles, filesize, thread, numjobs, time_based, runtime, sub_bench, self.platform)
+        fio = Fio(ramp_time, ioengine, bs, rw, nrfiles, filesize, thread, numjobs, time_based, runtime, sub_bench, self.platform)
         output = fio.run()
         data = fio.parse_output(output)
         fio.write_to_csv(data)

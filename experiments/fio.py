@@ -48,7 +48,6 @@ class Fio(Benchmark):
     def __init__(self,
                  ramp_time,
                  ioengine,
-                 filename,
                  bs,
                  rw,
                  nrfiles,
@@ -62,35 +61,34 @@ class Fio(Benchmark):
         super(Fio, self).__init__(platform)
         self.ramp_time = ramp_time
         self.ioengine = ioengine
-        self.filename = filename
         self.bs = bs
         self.rw = rw
         self.nrfiles = nrfiles
         self.filesize = filesize
-        self.thread = thread
+        self.thread = (thread == 'True')
         self.numjobs = numjobs
         self.time_based = (time_based == 'True')
         self.runtime = runtime
 
         self.sub_bench = sub_bench
 
-        self.csv_headers = ['ramp_time', 'ioengine', 'filename', 'bs', 'rw', 'nrfiles', 'filesize', 'thread', 'numjobs', 'time_based', 'runtime', 'bw']
+        self.csv_headers = ['ramp_time', 'ioengine', 'bs', 'rw', 'nrfiles', 'filesize', 'thread', 'numjobs', 'time_based', 'runtime', 'bw']
         if self.sub_bench == FioSubBench.RANDREAD:
             self.csv_filename = 'fio_randread.csv'
         elif self.sub_bench == FioSubBench.RANDWRITE:
             self.csv_filename = 'fio_randwrite.csv'
 
     def run_native(self):
+        thread_option = '' if self.thread is False else '--thread'
         time_based_option = '' if self.time_based is False else '--time_based'
         cmd = (f'fio --output-format=json --name=test '
                f'--ramp_time={self.ramp_time} '
                f'--ioengine={self.ioengine} '
-               f'--filename={self.filename} '
                f'--bs={self.bs} '
                f'--rw={self.rw} '
                f'--nrfiles={self.nrfiles} '
                f'--filesize={self.filesize} '
-               f'--thread={self.thread} '
+               f'{thread_option} '
                f'--numjobs={self.numjobs} '
                f'{time_based_option} '
                f'--runtime={self.runtime}')
@@ -125,16 +123,16 @@ class Fio(Benchmark):
         del lines[cmd_lineno : cmd_lineno + 2]
 
         # Fio-specific: find the CMD lines
+        thread_option = '' if self.thread is False else '--thread'
         time_based_option = '' if self.time_based is False else '--time_based'
         fio_cmd = (f'fio --output-format=json --name=test '
                    f'--ramp_time={self.ramp_time} '
                    f'--ioengine={self.ioengine} '
-                   f'--filename={self.filename} '
                    f'--bs={self.bs} '
                    f'--rw={self.rw} '
                    f'--nrfiles={self.nrfiles} '
                    f'--filesize={self.filesize} '
-                   f'--thread={self.thread} '
+                   f'{thread_option} '
                    f'--numjobs={self.numjobs} '
                    f'{time_based_option} '
                    f'--runtime={self.runtime}'
@@ -165,12 +163,12 @@ class Fio(Benchmark):
         results_json = json.loads(output)
         if self.sub_bench == FioSubBench.RANDREAD:
             match = results_json['jobs'][0]['read'][self.BW]
-            metric = int(match)
+            metric = int(match) * 1024
             print(f'[fio_randread] bandwidth: {metric}\n')
             return metric
         elif self.sub_bench == FioSubBench.RANDWRITE:
             match = results_json['jobs'][0]['write'][self.BW]
-            metric = int(match)
+            metric = int(match) * 1024
             print(f'[fio_randwrite] bandwidth: {metric}\n')
             return metric
 
@@ -187,7 +185,6 @@ class Fio(Benchmark):
     def write_to_csv(self, data):
         csv_row = {'ramp_time': self.ramp_time,
                    'ioengine': self.ioengine,
-                   'filename': self.filename,
                    'bs': self.bs,
                    'rw': self.rw,
                    'nrfiles': self.nrfiles,
