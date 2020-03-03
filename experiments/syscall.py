@@ -105,9 +105,9 @@ class Syscall(Benchmark):
     def _parse_docker_output(self, output):
         for line in output:
             if self.DOCKER_METRIC in line:
-                print(f'[syscall_syscall] {line}\n')
-                runtime = float(line.split(',')[1])
-                return runtime
+                single_runtime = float(line.split(',')[1])
+                print(f'[syscall_syscall] {single_runtime} ns\n')
+                return single_runtime
 
     def write_to_csv(self, data):
         """Appends the given parameters and performance metric values to the csv file."""

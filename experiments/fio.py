@@ -177,11 +177,11 @@ class Fio(Benchmark):
     def _parse_docker_output(self, output):
         for line in output:
             if self.DOCKER_METRIC in line:
-                if self.sub_bench == FioSubBench.RANDREAD:
-                    print(f'[fio randread] {line}\n')
-                elif self.sub_bench == FioSubBench.RANDWRITE:
-                    print(f'[fio randwrite] {line}\n')
                 bw = int(line.split(',')[1])
+                if self.sub_bench == FioSubBench.RANDREAD:
+                    print(f'[fio randread] Bandwidth: {bw}\n')
+                elif self.sub_bench == FioSubBench.RANDWRITE:
+                    print(f'[fio randwrite] Bandwidth: {bw}\n')
                 return bw
 
     def write_to_csv(self, data):
