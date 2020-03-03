@@ -5,7 +5,6 @@ import shlex
 import subprocess
 
 from experiments import WORKLOADS_DIR, BENCHMARK_TOOLS_DIR
-
 from benchmark import Benchmark, Platform
 
 
@@ -74,7 +73,6 @@ class SysbenchCPU(Benchmark):
         # Insert the new ENV decalrations to lines
         lines[env_linenos[0] : env_linenos[0]] = env_decls
 
-        # Handle sysbench-specific Dockerfile issues: replace ${options} with other parameters
         # This will be the last line in the Dockerflie
         cmd = f'sysbench --num_threads={self.num_threads} --max-time={self.max_time} --cpu-max-prime={self.cpu_max_prime} cpu run"]'
         lines[last_line] = cmd

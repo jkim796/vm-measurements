@@ -32,4 +32,13 @@ class Benchmark(object):
         pass
 
     def parse_output(self, output):
+        if self.platform == Platform.NATIVE:
+            return self._parse_native_output(output)
+        elif self.platform == Platform.DOCKER:
+            return self._parse_docker_output(output)
+
+    def _parse_native_output(self, output):
+        pass
+
+    def _parse_docker_output(self, output):
         pass

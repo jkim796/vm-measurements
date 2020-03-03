@@ -1,6 +1,7 @@
 from benchmark_parser import BenchmarkParser
 from util import MultiDict
 from sysbench_cpu import SysbenchCPU
+from fio import Fio, FioSubBench
 
 from benchmark import Platform
 
@@ -12,7 +13,12 @@ class Dispatcher(object):
         # Platform Enum can convert given string (platform) to corresponding Enum
         self.platform = Platform[platform.upper()]
         self.dispatch_lookup = {SysbenchCPU.BENCH_NAME: self.dispatch_sysbench_cpu,
-                                'sysbench_memory': self.dispatch_sysbench_memory}
+                                'sysbench_memory': self.dispatch_sysbench_memory,
+                                'fio_randread': self.dispatch_fio,
+                                'fio_randwrite': self.dispatch_fio,
+                                'syscall_syscall': self.dispatch_syscall_syscall,
+                                'ml_tensorflow': self.dispatch_ml_tensorflow,
+                                'media_ffmpeg': self.dispatch_media_ffmpeg}
 
     def dispatch_benchmarks(self, bench_configs):
         for bench_config in bench_configs:
@@ -20,7 +26,11 @@ class Dispatcher(object):
             # Get the benchmark runner for given benchmark
             bench_runner = self.dispatch_lookup.get(benchmark_name, self.MSG_DISPATCH_LOOKUP_NOT_FOUND)
             # Run the benchmark
-            bench_runner(bench_config)
+            if callable(bench_runner):
+                bench_runner(bench_config)
+            else:
+                print(f'[Error] Unrecognized benchmark name: {benchmark_name}')
+                print('Skipping this benchmark...')
 
     def dispatch_sysbench_cpu(self, bench_config):
         # Get the parameters
@@ -34,6 +44,44 @@ class Dispatcher(object):
         sysbench_cpu.write_to_csv(data)
 
     def dispatch_sysbench_memory(self, bench_config):
+        pass
+
+    def dispatch_fio(self, bench_config):
+        # Get the parameters
+        ramp_time = bench_config[Fio.PARAM_RUNTIME]
+        ioengine = bench_config[Fio.PARAM_IOENGINE]
+        filename = bench_config[Fio.PARAM_FILENAME]
+        bs = bench_config[Fio.PARAM_BS]
+        rw = bench_config[Fio.PARAM_RW]
+        nrfiles = bench_config[Fio.PARAM_NRFILES]
+        filesize = bench_config[Fio.PARAM_FILESIZE]
+        thread = bench_config[Fio.PARAM_THREAD]
+        numjobs = bench_config[Fio.PARAM_NUMJOBS]
+        time_based = bench_config[Fio.PARAM_TIME_BASED]
+        runtime = bench_config[Fio.PARAM_RUNTIME]
+
+        benchmark_name = self._strip_multidict_token(bench_config[BenchmarkParser.BENCHMARK])
+        if benchmark_name == 'fio_randread':
+            sub_bench = FioSubBench.RANDREAD
+        elif benchmark_name == 'fio_randwrite':
+            sub_bench = FioSubBench.RANDWRITE
+
+        # Instantiate the corresponding benchmark runner
+        fio = Fio(ramp_time, ioengine, filename, bs, rw, nrfiles, filesize, thread, numjobs, time_based, runtime, sub_bench, self.platform)
+        output = fio.run()
+        data = fio.parse_output(output)
+        fio.write_to_csv(data)
+
+    def dispatch_syscall_syscall(self, bench_config):
+        # Get the parameters
+        pass
+
+    def dispatch_ml_tensorflow(self, bench_config):
+        # Get the parameters
+        pass
+
+    def dispatch_media_ffmpeg(self, bench_config):
+        # Get the parameters
         pass
 
     def _strip_multidict_token(self, name):
