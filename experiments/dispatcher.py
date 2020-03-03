@@ -3,6 +3,7 @@ from util import MultiDict
 from sysbench_cpu import SysbenchCPU
 from sysbench_memory import SysbenchMemory
 from fio import Fio, FioSubBench
+from syscall import Syscall
 
 from benchmark import Platform
 
@@ -87,7 +88,12 @@ class Dispatcher(object):
 
     def dispatch_syscall_syscall(self, bench_config):
         # Get the parameters
-        pass
+        count = bench_config[Syscall.PARAM_COUNT]
+
+        syscall = Syscall(count, self.platform)
+        output = syscall.run()
+        data = syscall.parse_output(output)
+        syscall.write_to_csv(data)
 
     def dispatch_ml_tensorflow(self, bench_config):
         # Get the parameters
