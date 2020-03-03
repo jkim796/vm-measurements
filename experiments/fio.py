@@ -94,7 +94,10 @@ class Fio(Benchmark):
                f'--numjobs={self.numjobs} '
                f'{time_based_option} '
                f'--runtime={self.runtime}')
-        print(cmd)
+        if self.sub_bench == FioSubBench.RANDREAD:
+            print(f'[fio_randread] {cmd}')
+        elif self.sub_bench == FioSubBench.RANDWRITE:
+            print(f'[fio_randwrite] {cmd}')
         process = subprocess.run(shlex.split(cmd),
                              stdout=subprocess.PIPE,
                              universal_newlines=True)
@@ -148,9 +151,10 @@ class Fio(Benchmark):
         # Run perf.py script
         if self.sub_bench == FioSubBench.RANDREAD:
             perf_cmd = f'python3 {BENCHMARK_TOOLS_DIR}/perf.py run --env {BENCHMARK_TOOLS_DIR}/examples/localhost.yaml fio.randread'
+            print(f'[fio_randread] {perf_cmd}')
         elif self.sub_bench == FioSubBench.RANDWRITE:
             perf_cmd = f'python3 {BENCHMARK_TOOLS_DIR}/perf.py run --env {BENCHMARK_TOOLS_DIR}/examples/localhost.yaml fio.randwrite'
-        print(perf_cmd)
+            print(f'[fio_randwrite] {perf_cmd}')
         process = subprocess.run(shlex.split(perf_cmd),
                                  stdout=subprocess.PIPE,
                                  universal_newlines=True)
@@ -162,21 +166,21 @@ class Fio(Benchmark):
         if self.sub_bench == FioSubBench.RANDREAD:
             match = results_json['jobs'][0]['read'][self.BW]
             metric = int(match)
-            print(f'[fio_randread] {self.BW}: {metric}')
+            print(f'[fio_randread] bandwidth: {metric}\n')
             return metric
         elif self.sub_bench == FioSubBench.RANDWRITE:
             match = results_json['jobs'][0]['write'][self.BW]
             metric = int(match)
-            print(f'[fio_randwrite] {self.BW}: {metric}')
+            print(f'[fio_randwrite] bandwidth: {metric}\n')
             return metric
 
     def _parse_docker_output(self, output):
         for line in output:
             if self.DOCKER_METRIC in line:
                 if self.sub_bench == FioSubBench.RANDREAD:
-                    print(f'[fio randread] {line}')
+                    print(f'[fio randread] {line}\n')
                 elif self.sub_bench == FioSubBench.RANDWRITE:
-                    print(f'[fio randwrite] {line}')
+                    print(f'[fio randwrite] {line}\n')
                 bw = int(line.split(',')[1])
                 return bw
 

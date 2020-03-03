@@ -13,11 +13,11 @@ class SysbenchCPU(Benchmark):
     BENCH_NAME = 'sysbench_cpu'
 
     # Performance metric for native output
-    EVENTS_PER_SECOND = 'events per second'
+    NATIVE_METRIC = 'events per second'
     REGEX_FLOAT = '\d+\.\d+'
 
     # Performance metric for Docker output
-    EVENTS_PER_SECOND_DOCKER = 'cpu_events_per_second'
+    DOCKER_METRIC = 'cpu_events_per_second'
 
     # Experiment parameters
     PARAM_NUM_THREADS = 'num_threads'
@@ -42,6 +42,7 @@ class SysbenchCPU(Benchmark):
 
     def run_native(self):
         cmd = f"sysbench --threads={self.num_threads} --max-time={self.max_time} --cpu-max-prime={self.cpu_max_prime} cpu run"
+        print(f'[sysbench_cpu] {cmd}')
         process = subprocess.run(shlex.split(cmd),
                                  stdout=subprocess.PIPE,
                                  universal_newlines=True)
@@ -85,7 +86,7 @@ class SysbenchCPU(Benchmark):
 
         # Run perf.py script
         perf_cmd = f'python3 {BENCHMARK_TOOLS_DIR}/perf.py run --env {BENCHMARK_TOOLS_DIR}/examples/localhost.yaml sysbench.cpu'
-        print(perf_cmd)
+        print(f'[sysbench_cpu] {perf_cmd}')
         process = subprocess.run(shlex.split(perf_cmd),
                                  stdout=subprocess.PIPE,
                                  universal_newlines=True)
@@ -100,18 +101,18 @@ class SysbenchCPU(Benchmark):
 
     def _parse_native_output(self, output):
         for line in output:
-            if self.EVENTS_PER_SECOND in line:
-                print(f"[sysbench cpu] {line}")
+            if self.NATIVE_METRIC in line:
                 matches = re.findall(self.REGEX_FLOAT, line)
                 # There should only be one floating point number
                 events_per_second = float(matches[0])
+                print(f"[sysbench cpu] {events_per_second} events per second\n")
                 return events_per_second
 
     def _parse_docker_output(self, output):
         for line in output:
-            if self.EVENTS_PER_SECOND_DOCKER in line:
-                print(f'[sysbench cpu] {line}')
+            if self.DOCKER_METRIC in line:
                 events_per_second = float(line.split(',')[1])
+                print(f"[sysbench cpu] {events_per_second} events per second\n")
                 return events_per_second
 
     def write_to_csv(self, data):

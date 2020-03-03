@@ -65,7 +65,7 @@ class SysbenchMemory(Benchmark):
                f'--memory_oper={self.memory_oper} '
                f'--memory_access_mode={self.memory_access_mode} '
                f'memory run')
-        print(cmd)
+        print(f'[sysbench_memory] {cmd}')
         process = subprocess.run(shlex.split(cmd),
                                  stdout=subprocess.PIPE,
                                  universal_newlines=True)
@@ -115,7 +115,7 @@ class SysbenchMemory(Benchmark):
 
         # Run perf.py script
         perf_cmd = f'python3 {BENCHMARK_TOOLS_DIR}/perf.py run --env {BENCHMARK_TOOLS_DIR}/examples/localhost.yaml sysbench.memory'
-        print(perf_cmd)
+        print(f'[sysbench_memory] {perf_cmd}')
         process = subprocess.run(shlex.split(perf_cmd),
                                  stdout=subprocess.PIPE,
                                  universal_newlines=True)
@@ -131,17 +131,17 @@ class SysbenchMemory(Benchmark):
     def _parse_native_output(self, output):
         for line in output:
             if self.NATIVE_METRIC in line:
-                print(f"[sysbench memory] {line}")
                 matches = re.findall(self.REGEX_FLOAT, line)
                 # There should only be one floating point number
                 memory_ops_per_second = float(matches[0])
+                print(f"[sysbench memory] {memory_ops_per_second} memory ops per second\n")
                 return memory_ops_per_second
 
     def _parse_docker_output(self, output):
         for line in output:
             if self.DOCKER_METRIC in line:
-                print(f'[sysbench memory] {line}')
                 memory_ops_per_second = float(line.split(',')[1])
+                print(f"[sysbench memory] {memory_ops_per_second} memory ops per second\n")
                 return memory_ops_per_second
 
     def write_to_csv(self, data):

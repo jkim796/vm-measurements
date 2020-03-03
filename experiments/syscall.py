@@ -54,7 +54,7 @@ class Syscall(Benchmark):
                                      stdout=subprocess.PIPE,
                                      universal_newlines=True)
         cmd = f'./syscall {self.count}'
-        print(cmd)
+        print(f'[syscall_syscall] {cmd}')
         process = subprocess.run(shlex.split(cmd),
                                  stdout=subprocess.PIPE,
                                  universal_newlines=True)
@@ -86,7 +86,7 @@ class Syscall(Benchmark):
 
         # Run perf.py script
         perf_cmd = f'python3 {BENCHMARK_TOOLS_DIR}/perf.py run --env {BENCHMARK_TOOLS_DIR}/examples/localhost.yaml syscall.syscall'
-        print(perf_cmd)
+        print(f'[syscall_syscall] {perf_cmd}')
         process = subprocess.run(shlex.split(perf_cmd),
                                  stdout=subprocess.PIPE,
                                  universal_newlines=True)
@@ -96,16 +96,16 @@ class Syscall(Benchmark):
     def _parse_native_output(self, output):
         # There's only one line of output for syscall
         line = output[0]
-        print(f"[syscall_syscall] {line}")
         begin_index = line.index(',') + 1
         end_index = line.index('ns')
-        total_runtime = int(line[begin_index : end_index])
-        return total_runtime
+        single_runtime = int(line[begin_index : end_index])
+        print(f"[syscall_syscall] {single_runtime} ns\n")
+        return single_runtime
 
     def _parse_docker_output(self, output):
         for line in output:
             if self.DOCKER_METRIC in line:
-                print(f'[syscall_syscall] {line}')
+                print(f'[syscall_syscall] {line}\n')
                 runtime = float(line.split(',')[1])
                 return runtime
 

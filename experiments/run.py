@@ -13,6 +13,8 @@ def main(args):
     bench_parser = BenchmarkParser()
     bench_configs = bench_parser.parse_ini_file(args.benchmark_file)
 
+    print(f'Running on {args.platform}...\n')
+
     # For each config, dispatch benchmark runner
     dispatcher = Dispatcher(args.platform)
     dispatcher.dispatch_benchmarks(bench_configs)
