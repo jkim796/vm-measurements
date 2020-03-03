@@ -17,20 +17,22 @@ import json
 
 def read_bandwidth(data: str, **kwargs) -> int:
     """file i/o bandwidth."""
-    return sum([job["read"]["bw"] for job in json.loads(data)["jobs"]]) * 1024
+    return json.loads(data)["jobs"][0]["read"]["bw"] * 1024
+
 
 def write_bandwidth(data: str, **kwargs) -> int:
     """file i/o bandwidth."""
-    return sum([job["write"]["bw"] for job in json.loads(data)["jobs"]]) * 1024
+    return json.loads(data)["jobs"][0]["write"]["bw"] * 1024
+
 
 def read_io_ops(data: str, **kwargs) -> float:
     """file i/o operations per second"""
-    return sum([float(job["read"]["iops"]) for job in json.loads(data)["jobs"]])
+    return float(json.loads(data)["jobs"][0]["read"]["iops"])
 
 
 def write_io_ops(data: str, **kwargs) -> float:
     """file i/o operations per second"""
-    return sum([float(job["write"]["iops"]) for job in json.loads(data)["jobs"]])
+    return float(json.loads(data)["jobs"][0]["write"]["iops"])
 
 
 # change function names so we just print "bandwidth" and "io_ops

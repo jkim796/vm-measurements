@@ -162,11 +162,13 @@ class Fio(Benchmark):
     def _parse_native_output(self, output):
         results_json = json.loads(output)
         if self.sub_bench == FioSubBench.RANDREAD:
-            metric = sum([int(job['read'][self.BW]) for job in results_json['jobs']]) * 1024
+            match = results_json['jobs'][0]['read'][self.BW]
+            metric = int(match) * 1024
             print(f'[fio_randread] bandwidth: {metric}\n')
             return metric
         elif self.sub_bench == FioSubBench.RANDWRITE:
-            metric = sum([int(job['write'][self.BW]) for job in results_json['jobs']]) * 1024
+            match = results_json['jobs'][0]['write'][self.BW]
+            metric = int(match) * 1024
             print(f'[fio_randwrite] bandwidth: {metric}\n')
             return metric
 
