@@ -1,6 +1,7 @@
 from benchmark_parser import BenchmarkParser
 from util import MultiDict
 from sysbench_cpu import SysbenchCPU
+from sysbench_memory import SysbenchMemory
 from fio import Fio, FioSubBench
 
 from benchmark import Platform
@@ -13,7 +14,7 @@ class Dispatcher(object):
         # Platform Enum can convert given string (platform) to corresponding Enum
         self.platform = Platform[platform.upper()]
         self.dispatch_lookup = {SysbenchCPU.BENCH_NAME: self.dispatch_sysbench_cpu,
-                                'sysbench_memory': self.dispatch_sysbench_memory,
+                                SysbenchMemory.BENCH_NAME: self.dispatch_sysbench_memory,
                                 'fio_randread': self.dispatch_fio,
                                 'fio_randwrite': self.dispatch_fio,
                                 'syscall_syscall': self.dispatch_syscall_syscall,
@@ -44,7 +45,19 @@ class Dispatcher(object):
         sysbench_cpu.write_to_csv(data)
 
     def dispatch_sysbench_memory(self, bench_config):
-        pass
+        # Get the parameters
+        num_threads = bench_config[SysbenchMemory.PARAM_NUM_THREADS]
+        memory_block_size = bench_config[SysbenchMemory.PARAM_MEMORY_BLOCK_SIZE]
+        memory_total_size = bench_config[SysbenchMemory.PARAM_MEMORY_TOTAL_SIZE]
+        memory_scope = bench_config[SysbenchMemory.PARAM_MEMORY_SCOPE]
+        memory_hugetlb = bench_config[SysbenchMemory.PARAM_MEMORY_HUGETLB]
+        memory_oper = bench_config[SysbenchMemory.PARAM_MEMORY_OPER]
+        memory_access_mode = bench_config[SysbenchMemory.PARAM_MEMORY_ACCESS_MODE]
+
+        sysbench_memory = SysbenchMemory(num_threads, memory_block_size, memory_total_size, memory_scope, memory_hugetlb, memory_oper, memory_access_mode, self.platform)
+        output = sysbench_memory.run()
+        data = sysbench_memory.parse_output(output)
+        sysbench_memory.write_to_csv(data)
 
     def dispatch_fio(self, bench_config):
         # Get the parameters

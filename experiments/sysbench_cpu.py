@@ -53,29 +53,29 @@ class SysbenchCPU(Benchmark):
         with open(self.DEFAULT_DOCKERFILE_NAME, 'r') as f:
             lines = f.readlines()
 
-        # Find the lines with ENV declarations
-        env_linenos = []
-        for lineno, line in enumerate(lines):
-            if 'ENV' in line:
-                env_linenos.append(lineno)
+        # # Find the lines with ENV declarations
+        # env_linenos = []
+        # for lineno, line in enumerate(lines):
+        #     if 'ENV' in line:
+        #         env_linenos.append(lineno)
 
         # Sysbench-specific: find the last line
         last_line = len(lines) - 1
 
-        # Remove these lines - assumes ENV lines are grouped together
-        del lines[env_linenos[0] : env_linenos[-1] + 1]
+        # # Remove these lines - assumes ENV lines are grouped together
+        # del lines[env_linenos[0] : env_linenos[-1] + 1]
 
-        # Create ENV declaration strings
-        env_decls = [f'ENV threads {self.num_threads}\n',
-                     f'ENV max_time {self.max_time}\n',
-                     f'ENV cpu_max_prime {self.cpu_max_prime}\n']
+        # # Create ENV declaration strings
+        # env_decls = [f'ENV threads {self.num_threads}\n',
+        #              f'ENV max_time {self.max_time}\n',
+        #              f'ENV cpu_max_prime {self.cpu_max_prime}\n']
 
-        # Insert the new ENV decalrations to lines
-        lines[env_linenos[0] : env_linenos[0]] = env_decls
+        # # Insert the new ENV decalrations to lines
+        # lines[env_linenos[0] : env_linenos[0]] = env_decls
 
         # This will be the last line in the Dockerflie
         cmd = f'sysbench --num_threads={self.num_threads} --max-time={self.max_time} --cpu-max-prime={self.cpu_max_prime} cpu run"]'
-        lines[last_line] = cmd
+        lines[-1] = cmd
 
         # Write to Dockerfile
         new_dockerfile = self.DOCKERFILE_NAME

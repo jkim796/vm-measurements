@@ -93,8 +93,7 @@ class Fio(Benchmark):
                f'--thread={self.thread} '
                f'--numjobs={self.numjobs} '
                f'{time_based_option} '
-               f'--runtime={self.runtime}'
-               )
+               f'--runtime={self.runtime}')
         print(cmd)
         process = subprocess.run(shlex.split(cmd),
                              stdout=subprocess.PIPE,
