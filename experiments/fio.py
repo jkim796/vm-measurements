@@ -90,6 +90,7 @@ class Fio(Benchmark):
                f'--filesize={self.filesize} '
                f'{thread_option} '
                f'--numjobs={self.numjobs} '
+               f'--group_reporting '
                f'{time_based_option} '
                f'--runtime={self.runtime}')
         if self.sub_bench == FioSubBench.RANDREAD:
@@ -134,6 +135,7 @@ class Fio(Benchmark):
                    f'--filesize={self.filesize} '
                    f'{thread_option} '
                    f'--numjobs={self.numjobs} '
+                   f'--group_reporting '
                    f'{time_based_option} '
                    f'--runtime={self.runtime}'
         )
