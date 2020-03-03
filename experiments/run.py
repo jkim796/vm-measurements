@@ -1,3 +1,7 @@
+# Ideally we want to set PYTHONPATH, but let's not mess with the machine env variables
+import sys
+sys.path.append('/home/ubuntu/vm-measurements')
+
 import argparse
 
 from benchmark_parser import BenchmarkParser

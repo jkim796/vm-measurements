@@ -76,7 +76,7 @@ class SysbenchCPU(Benchmark):
 
         # Handle sysbench-specific Dockerfile issues: replace ${options} with other parameters
         # This will be the last line in the Dockerflie
-        cmd = 'sysbench --threads=${threads} --max-time=${max_time} --cpu-max-prime=${cpu_max_prime} cpu run"]"'
+        cmd = f'sysbench --num_threads={self.num_threads} --max-time={self.max_time} --cpu-max-prime={self.cpu_max_prime} cpu run"]'
         lines[last_line] = cmd
 
         # Write to Dockerfile
@@ -87,6 +87,7 @@ class SysbenchCPU(Benchmark):
 
         # Run perf.py script
         perf_cmd = f'python3 {BENCHMARK_TOOLS_DIR}/perf.py run --env {BENCHMARK_TOOLS_DIR}/examples/localhost.yaml sysbench.cpu'
+        print(perf_cmd)
         process = subprocess.run(shlex.split(perf_cmd),
                                  stdout=subprocess.PIPE,
                                  universal_newlines=True)
