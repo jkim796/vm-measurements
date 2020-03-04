@@ -5,6 +5,7 @@ from sysbench_memory import SysbenchMemory
 from fio import Fio, FioSubBench
 from syscall import Syscall
 from ml_tensorflow import MLTensorflow
+from media_ffmpeg import MediaFFMPEG
 
 from benchmark import Platform
 
@@ -21,7 +22,7 @@ class Dispatcher(object):
                                 'fio_randwrite': self.dispatch_fio,
                                 Syscall.BENCH_NAME: self.dispatch_syscall_syscall,
                                 MLTensorflow.BENCH_NAME: self.dispatch_ml_tensorflow,
-                                'media_ffmpeg': self.dispatch_media_ffmpeg}
+                                MediaFFMPEG.BENCH_NAME: self.dispatch_media_ffmpeg}
 
     def dispatch_benchmarks(self, bench_configs):
         for bench_config in bench_configs:
@@ -107,7 +108,12 @@ class Dispatcher(object):
 
     def dispatch_media_ffmpeg(self, bench_config):
         # Get the parameters
-        pass
+        input_file = bench_config[MediaFFMPEG.PARAM_INPUT_FILE]
+
+        media_ffmpeg = MediaFFMPEG(input_file, self.platform)
+        output = media_ffmpeg.run()
+        data = media_ffmpeg.parse_output(output)
+        media_ffmpeg.write_to_csv(data)
 
     def _strip_multidict_token(self, name):
         """Strips away trailing token for multidict unique id."""
