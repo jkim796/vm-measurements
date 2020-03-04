@@ -128,6 +128,7 @@ class DockerContainer(Container):
                                            ports=self._ports,
                                            remove=True,
                                            environment=env,
+                                           privileged=True,
                                            **self._kwargs).decode("utf-8")
 
     def _clean_containers(self):
