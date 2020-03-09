@@ -5,6 +5,7 @@ test/test_data/
 **/__pycache__
 *.pyc
 venv
+Dockerfile
 
 # paper
 paper.pdf
