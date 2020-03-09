@@ -88,7 +88,7 @@ class MediaFFMPEG(Benchmark):
                                  stdout=subprocess.PIPE,
                                  stderr=subprocess.PIPE,
                                  universal_newlines=True)
-        output_str = process.stderr
+        output_str = process.stdout
         return output_str.split('\n')
 
     def _parse_native_output(self, output):
