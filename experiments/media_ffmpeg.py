@@ -67,9 +67,13 @@ class MediaFFMPEG(Benchmark):
 
         # We decided not to rely on Docker ENV variables
         # This will be the last line in the Dockerflie
-        workload_cmd = f'3_NeuralNetworks/convolutional_network.py'
-        cmd = f'CMD python {workload_cmd}'
-        lines[-1] = cmd
+        workload_cmd = f'numactl -N 0 -m 0 ffmpeg -i {self.input_file} -c:v libx264 -preset veryslow output.mp4'
+        cmd = shlex.split(workload_cmd)
+      # cmd_prefix = f'numactl -N 0 -m 0'
+      # cmd.insert(0, cmd_prefix)
+        cmd = f'CMD ["sh", "-c", "{workload_cmd}"]'
+        print(cmd)
+        lines.append(cmd)
 
         # Write to Dockerfile
         new_dockerfile = self.DOCKERFILE_NAME
@@ -78,13 +82,13 @@ class MediaFFMPEG(Benchmark):
                 f.write(line)
 
         # Run perf.py script
-        perf_cmd = f'python3 {BENCHMARK_TOOLS_DIR}/perf.py run --env {BENCHMARK_TOOLS_DIR}/examples/localhost.yaml ml.tensorflow'
-        print(f'[ml_tensorflow] {perf_cmd}')
+        perf_cmd = f'python3 {BENCHMARK_TOOLS_DIR}/perf.py run --env {BENCHMARK_TOOLS_DIR}/examples/localhost.yaml media.ffmpeg'
+        print(f'[media_ffmpeg] {perf_cmd}')
         process = subprocess.run(shlex.split(perf_cmd),
                                  stdout=subprocess.PIPE,
-                                 stderr=subprocess.DEVNULL,
+                                 stderr=subprocess.PIPE,
                                  universal_newlines=True)
-        output_str = process.stdout
+        output_str = process.stderr
         return output_str.split('\n')
 
     def _parse_native_output(self, output):
@@ -102,6 +106,7 @@ class MediaFFMPEG(Benchmark):
 
     def _parse_docker_output(self, output):
         for line in output:
+            print(line)
             if self.DOCKER_METRIC in line:
                 time = float(line.split(',')[1]) * 1000
                 print(f'[media_ffmpeg] {time} ms\n')
