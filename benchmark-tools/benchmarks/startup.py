@@ -33,7 +33,7 @@ def startup(machine: Machine, workload: str, count: int = 5, port: int = 0, **kw
     """
     # Load before timing.
     image = machine.pull(workload)
-    netcat = machine.pull("netcat")
+    #netcat = machine.pull("netcat")
     count = int(count)
     port = int(port)
 
@@ -46,7 +46,8 @@ def startup(machine: Machine, workload: str, count: int = 5, port: int = 0, **kw
                 # Run a detached container until httpd available.
                 with machine.container(image, port=port, **kwargs).detach() as server:
                     (server_host, server_port) = server.address()
-                    machine.container(netcat).run(host=server_host, port=server_port)
+                    #machine.container(netcat).run(host=server_host, port=server_port)
+                    machine.container().run(host=server_host, port=server_port)
         return timer.elapsed() / float(count)
 
 
