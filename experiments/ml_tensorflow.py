@@ -69,16 +69,16 @@ class MLTensorflow(Benchmark):
             lines = f.readlines()
 
         # Remove CMD lines - we'll hardcode in the param values
-        for lineno, line in enumerate(lines):
-            if 'CMD' in line:
-                cmd_lineno = lineno
-        del lines[cmd_lineno]
+        # for lineno, line in enumerate(lines):
+        #     if 'CMD' in line:
+        #         cmd_lineno = lineno
+        # del lines[cmd_lineno]
 
-        # We decided not to rely on Docker ENV variables
-        # This will be the last line in the Dockerflie
-        workload_cmd = f'3_NeuralNetworks/convolutional_network.py'
-        cmd = f'CMD python {workload_cmd}'
-        lines[-1] = cmd
+        # # We decided not to rely on Docker ENV variables
+        # # This will be the last line in the Dockerflie
+        # workload_cmd = f'3_NeuralNetworks/convolutional_network.py'
+        # cmd = f'CMD numactl -N 0 -m 0 python {workload_cmd}'
+        # lines.append(cmd)
 
         # Write to Dockerfile
         new_dockerfile = self.DOCKERFILE_NAME
