@@ -53,7 +53,8 @@ class MLTensorflow(Benchmark):
             process = subprocess.run(shlex.split(git_cmd),
                                      stdout=subprocess.PIPE,
                                      universal_newlines=True)
-        cmd = f'python3 {self.WORKLOAD[self.network]} 2>/dev/null'
+        cmd = f'python3 {self.WORKLOAD[self.network]}'
+        #cmd = f'python3 {self.WORKLOAD[self.network]} 2>/dev/null'
         print(f'[ml_tensorflow] {cmd}')
         process = subprocess.run(shlex.split(cmd),
                                  stdout=subprocess.PIPE,

@@ -113,6 +113,8 @@ model = tf.estimator.Estimator(model_fn)
 input_fn = tf.estimator.inputs.numpy_input_fn(
     x={'images': mnist.train.images}, y=mnist.train.labels,
     batch_size=batch_size, num_epochs=None, shuffle=True)
+
+begin = time()
 # Train the Model
 model.train(input_fn, steps=num_steps)
 
@@ -121,7 +123,7 @@ model.train(input_fn, steps=num_steps)
 input_fn = tf.estimator.inputs.numpy_input_fn(
     x={'images': mnist.test.images}, y=mnist.test.labels,
     batch_size=batch_size, shuffle=False)
-begin = time()
+#begin = time()
 # Use the Estimator 'evaluate' method
 e = model.evaluate(input_fn)
 end = time()
